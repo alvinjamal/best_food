@@ -159,6 +159,10 @@ a {
   padding: 10px;
 }
 
+.basis {
+  align-items: center;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;

@@ -2,7 +2,7 @@ import Image from "next/image";
 import { global } from "styled-jsx/css";
 import { Col, Row } from "react-bootstrap";
 
-const Login = () => {
+const Register = () => {
   return (
     <Row>
       <Col>
@@ -29,13 +29,13 @@ const Login = () => {
                   fontSize: 30,
                 }}
               >
-                Welcome
+                Let’s Get Started !
               </div>
               <h5
-                className="text-secondary text-center mt-2"
+                className="text-secondary text-center mt-2 "
                 style={{ marginRight: "50px" }}
               >
-                Log in into your exiting account
+                Create new account to access all features
               </h5>
             </div>
             <div className="input ">
@@ -46,7 +46,7 @@ const Login = () => {
                   className="form-control mb-2"
                   name="email"
                   placeholder="Email"
-                  style={{ width: "25rem", height: "40px" }}
+                  style={{ width: "25rem", height: "50px" }}
                 />
                 <h5>Password</h5>
                 <input
@@ -54,26 +54,45 @@ const Login = () => {
                   className="form-control mb-2"
                   name="password"
                   placeholder="Password"
-                  style={{ width: "25rem", height: "40px" }}
+                  style={{ width: "25rem", height: "50px" }}
+                />
+                <h5>Phone Number</h5>
+                <input
+                  type="text"
+                  className="form-control mb-2"
+                  name="Number"
+                  placeholder="Number"
+                  style={{ width: "25rem", height: "50px" }}
+                />
+                <h5>Create New Password</h5>
+                <input
+                  type="password"
+                  className="form-control mb-2"
+                  name="password"
+                  placeholder="Creat New Password"
+                  style={{ width: "25rem", height: "50px" }}
+                />
+                <h5>New Password</h5>
+                <input
+                  type="password"
+                  className="form-control mb-2"
+                  name="password"
+                  placeholder="New Password"
+                  style={{ width: "25rem", height: "50px" }}
                 />
                 <button
                   type="submit"
                   className="btn btn-warning mt-3"
                   style={{ width: "25rem" }}
                 >
-                  Login
-                </button>
-                <button type="submit" className="btn mt-1">
-                  Forgot Password
+                  Register Account
                 </button>
                 <div
-                  className=" justify-content-center text-dark"
+                  className=" justify-content-center text-dark mt-1"
                   style={{ marginLeft: "5px" }}
                 >
-                  Dont have Store.id account?
-                  <button type="submit" className="btn">
-                    Register
-                  </button>
+                  Already have account?{" "}
+                  <button className="btn">Log In Here</button>
                 </div>
               </form>
             </div>
@@ -84,4 +103,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;

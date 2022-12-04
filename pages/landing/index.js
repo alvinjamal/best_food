@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { globals } from "styled-jsx/css";
 
-function LandingPage() {
+function LandingPage1() {
   return (
     <div className="container">
       <div>
@@ -52,30 +52,15 @@ function LandingPage() {
           </h4>
         </div>
         <div className="wrapper">
-          <div
-            className="wrapper-left"
-            style={{
-              // backgroundImage: `url(/bg2.png)`,
-              height: "700px",
-              width: "780px",
-              border: "3px solid #EFC81A",
-              borderRadius: "10px",
-            }}
-          >
-            <div className="wrapper-img-popular">
-              <Image src="/food1.png" alt="makanan" width={600} height={500} />
+          <div className="wrapper-left col-2">
+            <div
+              className="wrapper-img-popular"
+              style={{ marginRight: "100px" }}
+            >
+              <Image src="/food4.png" alt="makanan" width={600} height={500} />
             </div>
-          </div>
-          <div className="wrapper-right" style={{ marginLeft: "80px" }}>
-            <div>
-              <h2 className="subtitle">
-                Healthy Bone Broth Ramen (Quick & Easy)
-              </h2>
-              <p>
-                Quick + Easy Chicken Bone Broth Ramen- Healthy chicken ramen in
-                a hurry? That’s right!
-              </p>
-              <button className="button">Learn More</button>
+            <div className="wrapper-img-popular">
+              <Image src="/food5.png" alt="makanan" width={600} height={500} />
             </div>
           </div>
         </div>
@@ -169,4 +154,4 @@ function LandingPage() {
   );
 }
 
-export default LandingPage;
+export default LandingPage1;
