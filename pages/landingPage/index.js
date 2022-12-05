@@ -5,17 +5,15 @@ function LandingPage() {
   return (
     <div className="container">
       <div>
-        <div className="food" style={{ backgrounColor: "blue" }}>
+        <div className="food">
           <div className="wrapper-left mt-2 ">
             <div>
               <div
                 className="box line-items-center"
-                style={{ marginTop: "20px", color: "blue" }}
+                style={{ marginTop: "10px", color: "blue" }}
               >
                 <h1>Discover recipe & Delicious food</h1>
-                <span class="icon">
-                  <i class="fa fa-search" />
-                </span>
+                <span class="icon"></span>
                 <input
                   type="search"
                   className="search"
@@ -28,21 +26,20 @@ function LandingPage() {
             <div
               className="wrapper-right"
               style={{
-                width: "50%",
                 display: "flex",
                 alignItems: "center",
                 marginLeft: "55%",
-                backgroundImage: `url(/bg.png)`,
+                // backgroundImage: `url(/bg.png)`,
                 height: "700px",
                 width: "780px",
               }}
             >
-              <div>
+              <div className="img">
                 <Image
                   src="/food1.png"
                   alt="makanan"
                   width={600}
-                  height={500}
+                  height={650}
                 />
               </div>
             </div>
@@ -75,7 +72,9 @@ function LandingPage() {
                 Quick + Easy Chicken Bone Broth Ramen- Healthy chicken ramen in
                 a hurry? That’s right!
               </p>
-              <button className="button">Learn More</button>
+              <button className="button" variant="warning">
+                Learn More
+              </button>
             </div>
           </div>
         </div>

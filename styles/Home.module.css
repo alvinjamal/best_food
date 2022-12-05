@@ -1,5 +1,6 @@
 .container {
-  padding: 0 2rem;
+  width: 1000px;
+  min-height: 200px;
 }
 
 .main {
@@ -125,5 +126,11 @@
   }
   .logo img {
     filter: invert(1);
+  }
+  .navbar {
+    width: auto;
+  }
+  .button {
+    width: 50%;
   }
 }

@@ -1,22 +1,23 @@
 import React from "react";
 import Link from "next/link";
+import { Nav } from "react-bootstrap";
 
 const Layouts = ({ children }) => {
   return (
     <>
-      <nav className="navbar navbar-expand bg-warning d-flex flex-row text-blue justify-content-around mb-5">
-        {/* <Link href="/">Home</Link>
-        <Link href="/about">About Us</Link>
-        <Link href="/recipe/3">Recipe 3</Link>
-        <Link href="/user">User</Link> */}
-        <Link href="/landingPage">Landing Page</Link>
-        <Link href="/chat">Chat</Link>
-        <Link href="/landing">Landing</Link>
-        <Link href="/Login">Login</Link>
-        <Link href="/Register">Register</Link>
-        <Link href="/Forgot">Forgot Password</Link>
-        <Link href="/Code">Code Reset Password</Link>
-        {/* <Link href="/add_recipe">Add Recipe</Link> */}
+      <nav
+        className="navbar d-flex flex-row text-dark justify-content-around mb-4 "
+        style={{ textAlign: "center", fontSize: "25px" }}
+      >
+        <Nav className="me-auto">
+          <Nav.Link href="./landing">Home</Nav.Link>
+
+          <Nav.Link href="./addRecipe">Add Recipe</Nav.Link>
+
+          <Nav.Link href="./landingPage">Landing Page</Nav.Link>
+
+          <Nav.Link href="./Profile">Profile</Nav.Link>
+        </Nav>
       </nav>
       <div className="container bg-light text-dark">{children}</div>
     </>

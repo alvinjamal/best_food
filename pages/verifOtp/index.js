@@ -2,7 +2,7 @@ import Image from "next/image";
 import { global } from "styled-jsx/css";
 import { Col, Row, Form, Button } from "react-bootstrap";
 
-const Code = () => {
+const VerifOtp = () => {
   return (
     <Row>
       <Col>
@@ -22,21 +22,21 @@ const Code = () => {
           <div className="text align-items-center">
             <div className="input ">
               <Form className="container mb-3 col-8 mt-5 ">
-                <h5>Code Change Password</h5>
+                <h5>Verification</h5>
                 <input
                   type="text"
                   className="form-control mb-2"
                   name="Code 6 Digit"
-                  placeholder=""
+                  placeholder="Verification Otp"
                   style={{ width: "25rem", height: "40px" }}
                 />
                 <Button
-                  href={"/ResetPass"}
+                  href={"/Login"}
                   type="submit"
                   className="btn btn-warning mt-3"
                   style={{ width: "25rem" }}
                 >
-                  Change Password
+                  Verification Otp
                 </Button>
               </Form>
             </div>
@@ -47,4 +47,4 @@ const Code = () => {
   );
 };
 
-export default Code;
+export default VerifOtp;
