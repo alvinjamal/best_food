@@ -2,29 +2,29 @@ import Image from "next/image";
 import { global } from "styled-jsx/css";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useRouter } from "next/navigation";
+import { RegisterUser } from "../../Redux/action/register";
 import { Col, Row, Form, Button } from "react-bootstrap";
 
 const Register = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [fullname, setFullname] = useState("");
   const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const dispatch = useDispatch();
+  const router = useRouter();
 
   const postData = (e) => {
     e.preventDefault();
-    console.log(fullname);
-    console.log(email);
-    console.log(phone);
-    console.log(password);
     let data = {
       fullname,
       email,
       phone,
       password,
     };
-    dispatch(regisUser(data));
+    dispatch(RegisterUser(data, router));
   };
   return (
     <Row>
@@ -65,9 +65,11 @@ const Register = () => {
               <Form onSubmit={postData} className="container mb-3 col-8 mt-4 ">
                 <h5>Full Name</h5>
                 <input
-                  type=""
+                  type="name"
                   className="form-control mb-2"
                   name="name"
+                  value={fullname}
+                  onChange={(e) => setFullname(e.target.value)}
                   placeholder="Full Name"
                   style={{ width: "25rem", height: "50px" }}
                 />
@@ -76,6 +78,8 @@ const Register = () => {
                   type="email"
                   className="form-control mb-2"
                   name="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   placeholder="Email"
                   style={{ width: "25rem", height: "50px" }}
                 />
@@ -84,6 +88,8 @@ const Register = () => {
                   type="text"
                   className="form-control mb-2"
                   name="Number"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
                   placeholder="Number"
                   style={{ width: "25rem", height: "50px" }}
                 />
@@ -92,6 +98,8 @@ const Register = () => {
                   type="password"
                   className="form-control mb-2"
                   name="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   placeholder="Password"
                   style={{ width: "25rem", height: "50px" }}
                 />
@@ -100,13 +108,14 @@ const Register = () => {
                   type="password"
                   className="form-control mb-2"
                   name="password"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
                   placeholder="Confirm Password"
                   style={{ width: "25rem", height: "50px" }}
                 />
                 <Button
-                  href={"/Verif-Otp"}
-                  type="submit"
                   className="btn btn-warning mt-3"
+                  type="submit"
                   style={{ width: "25rem" }}
                 >
                   Register Account

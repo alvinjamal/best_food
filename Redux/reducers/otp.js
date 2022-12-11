@@ -1,24 +1,18 @@
-const initialState = {
-  recipe: {
-    otp: "",
-  },
-  isLoading: false,
-};
+import axios from "axios";
 
-const VerifOtp = (state = initialState, action) => {
-  if (action.type === "CONFIRM_OTP_PENDING") {
-    return {
-      ...state,
-      isLoading: true,
-    };
-  } else if (action.type === "CONFIRM_OTP_SUCCESS") {
-    return {
-      ...state,
-      otp: action.payload,
-      isLoading: false,
-    };
-  } else {
-    return state;
+export const verificationOtpUser = (data, router) => async (dispatch) => {
+  try {
+    dispatch({ type: "USER_OTP_PENDING" });
+    const result = await axios.post(
+      "http://localhost:3500/users/verificationOtp",
+      data
+    );
+    const user = result.data.data;
+    dispatch({ type: "USER_OTP_SUCCESS", payload: user });
+    router.push("/Login");
+    console.log(" verification otp success");
+  } catch (err) {
+    console.log(" verification otp err");
+    console.log(err);
   }
 };
-export default VerifOtp;

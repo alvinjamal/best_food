@@ -1,13 +1,13 @@
 import axios from "axios";
 
-export const LoginUser = (data, navigate) => async (dispact) => {
+export const LoginUser = (data, router) => async (dispatch) => {
   try {
-    dispact({ type: "USER_LOGIN_PENDING" });
+    dispatch({ type: "USER_LOGIN_PENDING" });
     const result = await axios.post("http://localhost:3500/users/login", data);
     const user = result.data.data;
     localStorage.setItem("token", user.token);
-    dispact({ type: "USER_LOGIN_SUCCESS", payload: user });
-    navigate("/Landing-Page");
+    dispatch({ type: "USER_LOGIN_SUCCESS", payload: user });
+    window.location, router.push("/Landing-Page");
     console.log(" login success");
   } catch (err) {
     console.log(" login err");

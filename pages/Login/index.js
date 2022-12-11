@@ -2,15 +2,16 @@ import React, { useState } from "react";
 import { Button, Row, Col, Form } from "react-bootstrap";
 import Image from "next/image";
 import Link from "next/link";
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { LoginUser } from "../../Redux/action/login";
+import { useRouter } from "next/navigation";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const dispatc = useDispatch();
+  const dispatch = useDispatch();
+  const router = useRouter();
 
   const postData = (e) => {
     e.preventDefault();
@@ -21,7 +22,7 @@ function Login() {
       password,
     };
 
-    dispatc(LoginUser(data));
+    dispatch(LoginUser(data, router));
   };
   return (
     <Row>
@@ -82,8 +83,7 @@ function Login() {
                   placeholder="Password"
                   style={{ width: "25rem", height: "40px" }}
                 />
-                <Link
-                  href={"/Landing-Page"}
+                <Button
                   type="submit"
                   className="btn btn-warning text-white mt-3"
                   style={{
@@ -93,7 +93,7 @@ function Login() {
                   }}
                 >
                   Login
-                </Link>
+                </Button>
               </Form>
               <Link href={"/Forgot-pass"}>
                 <h5 style={{ marginTop: "5rem" }} className="text-center mb-4">
