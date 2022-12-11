@@ -1,7 +1,9 @@
 import React from "react";
 
-const Button = ({ title, type }) => {
-  return <button className={`btn btn-${type}`}>{title}</button>;
+const Button = ({ title }) => {
+  return (
+    <button className={`btn`} style={{ backgroundColor: "white" }}></button>
+  );
 };
 
 export default Button;

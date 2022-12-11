@@ -1,8 +1,31 @@
 import Image from "next/image";
 import { global } from "styled-jsx/css";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Col, Row, Form, Button } from "react-bootstrap";
 
 const Register = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [fullname, setFullname] = useState("");
+  const [phone, setPhone] = useState("");
+
+  const dispatch = useDispatch();
+
+  const postData = (e) => {
+    e.preventDefault();
+    console.log(fullname);
+    console.log(email);
+    console.log(phone);
+    console.log(password);
+    let data = {
+      fullname,
+      email,
+      phone,
+      password,
+    };
+    dispatch(regisUser(data));
+  };
   return (
     <Row>
       <Col>
@@ -39,7 +62,7 @@ const Register = () => {
               </h5>
             </div>
             <div className="input ">
-              <Form className="container mb-3 col-8 mt-4 ">
+              <Form onSubmit={postData} className="container mb-3 col-8 mt-4 ">
                 <h5>Full Name</h5>
                 <input
                   type=""
@@ -81,7 +104,7 @@ const Register = () => {
                   style={{ width: "25rem", height: "50px" }}
                 />
                 <Button
-                  href={"/verifOtp"}
+                  href={"/Verif-Otp"}
                   type="submit"
                   className="btn btn-warning mt-3"
                   style={{ width: "25rem" }}

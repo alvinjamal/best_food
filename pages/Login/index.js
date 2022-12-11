@@ -1,58 +1,28 @@
-import Image from "next/image";
-import { global } from "styled-jsx/css";
 import React, { useState } from "react";
-import { Form } from "react-bootstrap";
-import { Col, Row, Button } from "react-bootstrap";
-import axios from "axios";
+import { Button, Row, Col, Form } from "react-bootstrap";
+import Image from "next/image";
+import Link from "next/link";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { LoginUser } from "../../Redux/action/login";
 
-const Login = () => {
-  const [inputData, setInputData] = useState({
-    email: "",
-    password: "",
-  });
-  const [message, setMessage] = useState({
-    title: "",
-    text: "",
-    type: "success",
-  });
-  const [messageShow, setMessageShow] = useState(false);
+function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  const handleLogin = (e) => {
-    axios
-      .post(
-        process.env.API,
-        { email: inputData.email, password: inputData.password },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      )
-      .then((res) => {
-        localStorage.setItem("token", res.data.data.token);
-        setMessage({
-          title: "Success",
-          text: "Login success",
-          type: "success",
-        });
-        setTimeout(() => {
-          setMessageShow(true);
-        }, 500);
-        setTimeout(() => {
-          window.location = "/landingPage";
-        }, 2000);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  const dispatc = useDispatch();
+
+  const postData = (e) => {
+    e.preventDefault();
+    console.log(email);
+    console.log(password);
+    let data = {
+      email,
+      password,
+    };
+
+    dispatc(LoginUser(data));
   };
-  const handleChange = (e) => {
-    setInputData({
-      ...inputData,
-      [e.target.name]: e.target.value,
-    });
-  };
-  console.log(message);
   return (
     <Row>
       <Col>
@@ -61,8 +31,10 @@ const Login = () => {
           style={{
             backgroundImage: `url(/col.png)`,
             height: "800px",
-            width: "700px",
+            width: "800px",
             opacity: 0.2,
+            marginLeft: "10rem",
+            marginTop: "2rem",
           }}
         ></div>
       </Col>
@@ -70,11 +42,11 @@ const Login = () => {
         {" "}
         <div className="row">
           <div className="text align-items-center">
-            <div className="flex-end">
+            <div className="flex-end mb-4">
               <div
                 className="login text-center mt-3 text-warning"
                 style={{
-                  marginRight: "20%",
+                  marginRight: "29%",
                   fontWeight: "bold",
                   fontSize: 30,
                 }}
@@ -83,20 +55,20 @@ const Login = () => {
               </div>
               <h5
                 className="text-secondary text-center mt-2"
-                style={{ marginRight: "50px" }}
+                style={{ marginRight: "27%" }}
               >
                 Log in into your exiting account
               </h5>
             </div>
             <div className="input ">
-              <Form className="container mb-3 col-8 mt-4 ">
+              <Form onSubmit={postData} className="container mb-3 col-8 mt-4 ">
                 <h5>E-mail</h5>
                 <input
                   type="email"
                   className="form-control mb-2"
                   name="email"
-                  value={inputData.email}
-                  onChange={handleChange}
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   placeholder="Email"
                   style={{ width: "25rem", height: "40px" }}
                 />
@@ -105,49 +77,48 @@ const Login = () => {
                   type="password"
                   className="form-control mb-2"
                   name="password"
-                  value={inputData.password}
-                  onChange={handleChange}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   placeholder="Password"
                   style={{ width: "25rem", height: "40px" }}
                 />
-                <Button
-                  href={"/landingPage"}
+                <Link
+                  href={"/Landing-Page"}
                   type="submit"
-                  className="btn btn-warning mt-3"
-                  onClick={handleLogin}
-                  style={{ width: "25rem" }}
+                  className="btn btn-warning text-white mt-3"
+                  style={{
+                    position: "absolute",
+                    width: "25rem",
+                    height: "47px",
+                  }}
                 >
                   Login
-                </Button>
-                <Button
-                  href={"/Forgot"}
-                  type="submit"
-                  className="text-dark mt-2 mb-2"
+                </Link>
+              </Form>
+              <Link href={"/Forgot-pass"}>
+                <h5 style={{ marginTop: "5rem" }} className="text-center mb-4">
+                  Forgot Password ?
+                </h5>
+              </Link>
+              <h5
+                className=" justify-content-center text-dark mt-1"
+                style={{ marginLeft: "15rem" }}
+              >
+                Dont have an account?{" "}
+                <Link
+                  href={"/Register"}
+                  className="text-dark"
                   variant="outline-warning"
                 >
-                  Forgot Password
-                </Button>
-                <div
-                  className=" justify-content-center text-dark"
-                  style={{ marginLeft: "5px" }}
-                >
-                  Dont have Store.id account?
-                  <Button
-                    href={"/Register"}
-                    type="submit"
-                    className="btn text-dark"
-                    variant="outline-warning"
-                  >
-                    Register
-                  </Button>
-                </div>
-              </Form>
+                  Sign Up
+                </Link>
+              </h5>
             </div>
           </div>
         </div>
       </Col>
     </Row>
   );
-};
+}
 
 export default Login;
