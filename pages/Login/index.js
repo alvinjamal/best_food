@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useDispatch } from "react-redux";
 import { LoginUser } from "../../Redux/action/login";
 import { useRouter } from "next/navigation";
+import ModalEdit from "../../components/Modal/login";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -15,8 +16,8 @@ function Login() {
 
   const postData = (e) => {
     e.preventDefault();
-    console.log(email);
-    console.log(password);
+    email;
+    password;
     let data = {
       email,
       password,
@@ -93,9 +94,10 @@ function Login() {
                   }}
                 >
                   Login
+                  <ModalEdit />
                 </Button>
               </Form>
-              <Link href={"/Forgot-pass"}>
+              <Link href={"/Forgot-Pass"}>
                 <h5 style={{ marginTop: "5rem" }} className="text-center mb-4">
                   Forgot Password ?
                 </h5>

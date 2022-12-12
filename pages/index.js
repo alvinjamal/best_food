@@ -7,11 +7,51 @@ export default function Home() {
   return (
     <div>
       <div className={styles.container}>
-        hello from next
-        <button className="btn btn-primary">button from bootstrap</button>
+        Hello Alvin Jamal Azkya
+        <button
+          className="btn btn-primary"
+          href="/Profile"
+          style={{ marginLeft: "4rem" }}
+        >
+          Ganteng
+        </button>
       </div>
-      {/* <img src="/food1.png" height={200} width={200} />
-      <Image src="/food1.png" height={400} width={400} quality={1} priority /> */}
+      <h4 className={styles.container} style={{ marginLeft: "42%" }}>
+        Welcome To New Manager{" "}
+        <h3 style={{ fontWeight: "bold", marginLeft: "3rem" }}>ALVIN CORPS</h3>
+      </h4>
+      <Image
+        src="/alvin1.png"
+        height={400}
+        width={400}
+        quality={1}
+        priority
+        alt=""
+      />
+      <Image
+        src="/alvin1.png"
+        height={400}
+        width={400}
+        quality={1}
+        priority
+        alt=""
+      />
+      <Image
+        src="/alvin1.png"
+        height={400}
+        width={400}
+        quality={1}
+        priority
+        alt=""
+      />
+      <Image
+        src="/alvin1.png"
+        height={400}
+        width={400}
+        quality={1}
+        priority
+        alt=""
+      />
     </div>
   );
 }

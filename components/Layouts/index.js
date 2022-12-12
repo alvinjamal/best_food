@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Head from "next/head";
-import { Button } from "react-bootstrap";
+import { NavDropdown } from "react-bootstrap";
 
 const Layouts = ({ children }) => {
   return (
@@ -15,6 +15,33 @@ const Layouts = ({ children }) => {
       <nav className="container-fluid mt-3 ">
         <div className="container">
           <div className="row">
+            <div>
+              <NavDropdown
+                title="..."
+                id="basic-nav-dropdown"
+                className="col-1 offset-3"
+                style={{
+                  fontWeight: "bold",
+                  height: "30px",
+                  marginLeft: "60rem",
+                  backgroundColor: "aqua",
+                }}
+              >
+                <NavDropdown.Item href="Detail-Video">
+                  Detail Video
+                </NavDropdown.Item>
+                <NavDropdown.Item href="/Register">Register</NavDropdown.Item>
+                <NavDropdown.Item href="/Detail-Recipe">
+                  Detail Recipe
+                </NavDropdown.Item>
+                <NavDropdown.Item href="/Landing">
+                  Landing Page1
+                </NavDropdown.Item>
+                <NavDropdown.Item href="/Landing-Page">
+                  Landing Page2
+                </NavDropdown.Item>
+              </NavDropdown>
+            </div>
             <div className="col-1">
               <Link href="/">
                 {" "}
@@ -30,9 +57,10 @@ const Layouts = ({ children }) => {
             <div className="col-1">
               <Link href="/Profile">
                 {" "}
-                <h4 style={{ marginLeft: "40px" }}>Profile</h4>{" "}
+                <h4>Profile</h4>{" "}
               </Link>
             </div>
+
             <div className="col-1 offset-5">
               <Link href="/Login">
                 <div className="btn" style={{ borderRadius: "30px" }}>

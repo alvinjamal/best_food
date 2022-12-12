@@ -7,16 +7,14 @@ function Profile() {
   return (
     <div className="container">
       <div className="row justify-content-center mt-5">
-        <div
-          className="col-1"
-          style={{
-            height: "30rem",
-            width: "50rem",
-            border: "1px solid",
-            background: "#EFC81A",
-          }}
-        >
-          <Image src={"/foto2.png"} width={100} height={100} alt="" />
+        <div className="col-1">
+          <Image
+            src={"/alvin1.png"}
+            width={100}
+            height={100}
+            alt=""
+            style={{ borderRadius: "40%" }}
+          />
         </div>
       </div>
       <div className="row justify-content-center mt-5">
@@ -30,7 +28,7 @@ function Profile() {
           style={{ marginLeft: "570px", marginTop: "-50px" }}
         ></div>
       </div>
-      <div className="row mb-5">
+      <div className="row mb-4">
         <NavTabs />
       </div>
     </div>

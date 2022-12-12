@@ -7,7 +7,7 @@ export const LoginUser = (data, router) => async (dispatch) => {
     const user = result.data.data;
     localStorage.setItem("token", user.token);
     dispatch({ type: "USER_LOGIN_SUCCESS", payload: user });
-    window.location, router.push("/Landing-Page");
+    router.push("/Profile");
     console.log(" login success");
   } catch (err) {
     console.log(" login err");

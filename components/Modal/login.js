@@ -12,23 +12,7 @@ function ModalEdit() {
 
   return (
     <div>
-      <div className="btn mt-1" onClick={handleShow}>
-        <div
-          style={{
-            marginLeft: "4rem",
-            marginTop: "-5rem",
-          }}
-        >
-          <Image
-            src="/vector.png"
-            width={25}
-            height={25}
-            priority
-            alt=""
-            style={{ backgroundColor: "black", borderRadius: "9px" }}
-          />
-        </div>
-      </div>
+      <div className="btn mt-1" onClick={handleShow} />
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>

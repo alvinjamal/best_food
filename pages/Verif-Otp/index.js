@@ -4,22 +4,25 @@ import { Col, Row, Form, Button } from "react-bootstrap";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
-import { verificationOtpUser } from "../../Redux/reducers/otp";
+import { VerifOtpUser } from "../../Redux/action/otp";
 
 const VerifOtp = () => {
   const [otp, setOtp] = useState("");
+  const [email, setEmail] = useState("");
 
   const dispatch = useDispatch();
   const router = useRouter();
 
   const postData = (e) => {
     e.preventDefault();
-    otp;
+    console.log(otp, email);
     let data = {
       otp,
+      email,
     };
+    console.log(data);
 
-    dispatch(verificationOtpUser(data, router));
+    dispatch(VerifOtpUser(data, router));
   };
   return (
     <Row>
@@ -41,7 +44,17 @@ const VerifOtp = () => {
         <div className="row">
           <div className="text align-items-center">
             <div className="input ">
-              <Form onChange={postData} className="container mb-3 col-8 mt-5 ">
+              <Form onSubmit={postData} className="container mb-3 col-8 mt-5 ">
+                <h5>E-mail</h5>
+                <input
+                  type="email"
+                  className="form-control mb-2"
+                  name="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Email"
+                  style={{ width: "25rem", height: "40px" }}
+                />
                 <h5>Verification</h5>
                 <input
                   type="code"

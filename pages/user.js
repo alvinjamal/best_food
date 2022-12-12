@@ -1,5 +1,5 @@
 export async function getStaticProps() {
-  const res = await fetch("https://jsonplaceholder.typicode.com/users");
+  const res = await fetch("http://localhost:3500/users/login/");
   const data = await res.json();
   return {
     props: {

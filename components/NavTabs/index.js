@@ -17,39 +17,42 @@ const NavTabs = () => {
           <Tab eventKey="myrecipe" title="My Recipe">
             <div className="row">
               <div className="col-3">
-                <Image src="/food2.png" height={300} width={300} alt="" />
+                <Image src="/mam.png" height={300} width={300} alt="" />
                 <h4
                   style={{
                     marginTop: "-40px",
                     marginLeft: "13px",
-                    color: "white",
+                    color: "black",
+                    fontWeight: "bold",
+                  }}
+                >
+                  Burger
+                </h4>
+              </div>
+              <div className="col-3">
+                <Image src="/gambar6.png" height={300} width={300} alt="" />
+                <h4
+                  style={{
+                    marginTop: "-40px",
+                    marginLeft: "13px",
+                    color: "black",
+                    fontWeight: "bold",
                   }}
                 >
                   Indian Salad
                 </h4>
               </div>
               <div className="col-3">
-                <Image src="/food2.png" height={300} width={300} alt="" />
+                <Image src="/gambar1.png" height={300} width={300} alt="" />
                 <h4
                   style={{
                     marginTop: "-40px",
                     marginLeft: "13px",
-                    color: "white",
+                    color: "black",
+                    fontWeight: "bold",
                   }}
                 >
-                  Indian Salad
-                </h4>
-              </div>
-              <div className="col-3">
-                <Image src="/food2.png" height={300} width={300} alt="" />
-                <h4
-                  style={{
-                    marginTop: "-40px",
-                    marginLeft: "13px",
-                    color: "white",
-                  }}
-                >
-                  Indian Salad
+                  Sop
                 </h4>
               </div>
             </div>
@@ -57,39 +60,42 @@ const NavTabs = () => {
           <Tab eventKey="savedrecipe" title="Saved Recipe">
             <div className="row">
               <div className="col-3">
-                <Image src="/food2.png" height={300} width={300} alt="" />
+                <Image src="/food4.png" height={300} width={300} alt="" />
                 <h4
                   style={{
                     marginTop: "-40px",
                     marginLeft: "13px",
-                    color: "white",
+                    color: "black",
+                    fontWeight: "bold",
                   }}
                 >
-                  Indian Salad
+                  Pizza
                 </h4>
               </div>
               <div className="col-3">
-                <Image src="/food2.png" height={300} width={300} alt="" />
+                <Image src="/food5.png" height={300} width={300} alt="" />
                 <h4
                   style={{
                     marginTop: "-40px",
                     marginLeft: "13px",
-                    color: "white",
+                    color: "black",
+                    fontWeight: "bold",
                   }}
                 >
-                  Indian Salad
+                  Burger
                 </h4>
               </div>
               <div className="col-3">
-                <Image src="/food2.png" height={300} width={300} alt="" />
+                <Image src="/food1.png" height={300} width={300} alt="" />
                 <h4
                   style={{
                     marginTop: "-40px",
                     marginLeft: "13px",
-                    color: "white",
+                    color: "black",
+                    fontWeight: "bold",
                   }}
                 >
-                  Indian Salad
+                  Egg
                 </h4>
               </div>
             </div>
@@ -97,39 +103,42 @@ const NavTabs = () => {
           <Tab eventKey="likedrecipe" title="Liked Recipe">
             <div className="row">
               <div className="col-3">
-                <Image src="/food2.png" height={300} width={300} alt="" />
+                <Image src="/gambar5.png" height={300} width={300} alt="" />
                 <h4
                   style={{
                     marginTop: "-40px",
                     marginLeft: "13px",
-                    color: "white",
+                    color: "black",
+                    fontWeight: "bold",
                   }}
                 >
-                  Indian Salad
+                  Cake
                 </h4>
               </div>
               <div className="col-3">
-                <Image src="/food2.png" height={300} width={300} alt="" />
+                <Image src="/gambar4.png" height={300} width={300} alt="" />
                 <h4
                   style={{
                     marginTop: "-40px",
                     marginLeft: "13px",
-                    color: "white",
+                    color: "black",
+                    fontWeight: "bold",
                   }}
                 >
-                  Indian Salad
+                  Cake
                 </h4>
               </div>
               <div className="col-3">
-                <Image src="/food2.png" height={300} width={300} alt="" />
+                <Image src="/gambar2.png" height={300} width={300} alt="" />
                 <h4
                   style={{
                     marginTop: "-40px",
                     marginLeft: "13px",
-                    color: "white",
+                    color: "black",
+                    fontWeight: "bold",
                   }}
                 >
-                  Indian Salad
+                  Pangsit
                 </h4>
               </div>
             </div>

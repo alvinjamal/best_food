@@ -33,9 +33,12 @@ const Register = () => {
         <div
           style={{
             backgroundImage: `url(/col.png)`,
-            height: "800px",
-            width: "700px",
+            height: "50rem",
+            width: "45rem",
             opacity: 0.2,
+            marginLeft: "8rem",
+            marginTop: "2rem",
+            marginBottom: "2rem",
           }}
         ></div>
       </Col>
@@ -100,17 +103,7 @@ const Register = () => {
                   name="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  placeholder="Password"
-                  style={{ width: "25rem", height: "50px" }}
-                />
-                <h5>Confirm Password</h5>
-                <input
-                  type="password"
-                  className="form-control mb-2"
-                  name="password"
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                  placeholder="Confirm Password"
+                  placeholder="Create Password"
                   style={{ width: "25rem", height: "50px" }}
                 />
                 <Button
