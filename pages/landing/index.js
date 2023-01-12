@@ -1,10 +1,12 @@
 import Image from "next/image";
 import { globals } from "styled-jsx/css";
 import { Button } from "react-bootstrap";
+import Layouts from "../../components/Layouts";
 
 function LandingPage1() {
   return (
-    <div className="container">
+    <div className="container" style={{ background: "#FFF5EC" }}>
+      <Layouts />
       <div className="food" style={{ backgrounColor: "blue" }}>
         <div className="wrapper-left mt-2 ">
           <div className="search">
@@ -15,7 +17,7 @@ function LandingPage1() {
               <h1>Discover recipe & Delicious food</h1>
               <input
                 type="search"
-                className="search"
+                className="search d-flex"
                 placeholder="Search Restaurant Food"
               />
             </div>
@@ -35,7 +37,7 @@ function LandingPage1() {
             }}
           >
             <div>
-              <Image src="/food1.png" alt="makanan" width={600} height={500} />
+              <Image src="/food7.png" alt="makanan" width={600} height={500} />
             </div>
           </div>
         </div>
@@ -100,14 +102,6 @@ function LandingPage1() {
           <div className="img-shop mb-4">
             <Image src="/gambar6.png" alt="makanan" width={400} height={350} />
           </div>
-        </div>
-      </div>
-      <div id="end">
-        <div class="background">
-          <h2 class="data mb-5">Eat, Cook, Repeat</h2>
-          <a style={{ color: "#707070" }}>
-            Share your best recipe by uploading here !
-          </a>
         </div>
       </div>
     </div>

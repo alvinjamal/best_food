@@ -5,13 +5,14 @@ import { useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
 import { RegisterUser } from "../../Redux/action/register";
 import { Col, Row, Form, Button } from "react-bootstrap";
+import Swal from "sweetalert2";
 
 const Register = () => {
   const [fullname, setFullname] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  // const [confirmPassword, setConfirmPassword] = useState("");
 
   const dispatch = useDispatch();
   const router = useRouter();
@@ -25,6 +26,7 @@ const Register = () => {
       password,
     };
     dispatch(RegisterUser(data, router));
+    Swal.fire("Success", "Register Success,Returning to Login", "success");
   };
   return (
     <Row>

@@ -1,7 +1,29 @@
 import React, { useState } from "react";
 import { Form } from "react-bootstrap";
 import { useDispatch } from "react-redux";
+import Swal from "sweetalert2";
+import Layouts from "../../components/Layouts";
 import { addRecipeData } from "../../Redux/action/add-Recipe";
+
+// export const getServerSideProps = async (context) => {
+//   const { token } = context.req.cookies;
+//   console.log(token);
+//   if (!token) {
+//     return {
+//       redirect: {
+//         destination: "/Login",
+//         permanent: true,
+//       },
+//     };
+//   }
+
+//   return {
+//     props: {
+//       isLogin: true,
+//       token: token,
+//     },
+//   };
+// };
 
 function AddRecipe() {
   const [title, setTitle] = useState("");
@@ -29,10 +51,12 @@ function AddRecipe() {
       video,
     };
     dispatch(addRecipeData(data));
+    Swal.fire("Success", "Post Success", "success");
   };
   return (
-    <div>
-      <div className="container">
+    <div className="container">
+      <Layouts />
+      <div>
         <Form onSubmit={postData}>
           <div className="bg-secondary">
             <div className="row  mt-5">

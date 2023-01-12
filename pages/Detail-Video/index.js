@@ -1,10 +1,12 @@
 import React from "react";
 import Image from "next/image";
+import Layouts from "../../components/Layouts";
 
 function detailVideoRecipe() {
   return (
-    <div>
-      <div className="container">
+    <div className="container">
+      <Layouts />
+      <div>
         <div className="row mb-5">
           <div className="col-7">
             <Image src="/video.png" width={970} height={500} alt="" />

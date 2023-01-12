@@ -2,9 +2,14 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Head from "next/head";
-import { NavDropdown } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 
 const Layouts = ({ children }) => {
+  // const token = localStorage.getItem("token");
+  // const logout = () => {
+  //   localStorage.clear();
+  //   window.location.reload(false);
+  // };
   return (
     <>
       <Head>
@@ -15,35 +20,8 @@ const Layouts = ({ children }) => {
       <nav className="container-fluid mt-3 ">
         <div className="container">
           <div className="row">
-            <div>
-              <NavDropdown
-                title="..."
-                id="basic-nav-dropdown"
-                className="col-1 offset-3"
-                style={{
-                  fontWeight: "bold",
-                  height: "30px",
-                  marginLeft: "60rem",
-                  backgroundColor: "aqua",
-                }}
-              >
-                <NavDropdown.Item href="Detail-Video">
-                  Detail Video
-                </NavDropdown.Item>
-                <NavDropdown.Item href="/Register">Register</NavDropdown.Item>
-                <NavDropdown.Item href="/Detail-Recipe">
-                  Detail Recipe
-                </NavDropdown.Item>
-                <NavDropdown.Item href="/Landing">
-                  Landing Page1
-                </NavDropdown.Item>
-                <NavDropdown.Item href="/Landing-Page">
-                  Landing Page2
-                </NavDropdown.Item>
-              </NavDropdown>
-            </div>
             <div className="col-1">
-              <Link href="/">
+              <Link href="/Landing-Page">
                 {" "}
                 <h4>Home</h4>{" "}
               </Link>
@@ -60,7 +38,18 @@ const Layouts = ({ children }) => {
                 <h4>Profile</h4>{" "}
               </Link>
             </div>
-
+            {/* {token ? ( */}
+            <>
+              {/* <div className="col-1 offset-5" style={{ marginLeft: "5px" }}>
+                <Button
+                  className="btn btn-danger btn-small"
+                  onClick={() => logout()}
+                >
+                  Logout
+                </Button>
+              </div> */}
+            </>
+            {/* ) : ( */}
             <div className="col-1 offset-5">
               <Link href="/Login">
                 <div className="btn" style={{ borderRadius: "30px" }}>
@@ -74,6 +63,7 @@ const Layouts = ({ children }) => {
                 </div>
               </Link>
             </div>
+            {/* )} */}
           </div>
         </div>
       </nav>

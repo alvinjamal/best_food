@@ -11,7 +11,7 @@ function ModalEdit() {
   const handleShow = () => setShow(true);
 
   return (
-    <div>
+    <div className="container">
       <div className="btn mt-1" onClick={handleShow}>
         <div
           style={{

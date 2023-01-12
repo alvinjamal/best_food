@@ -3,6 +3,6 @@ import rootReducers from "./reducers";
 import logger from "redux-logger";
 import thunk from "redux-thunk";
 
-const store = createStore(rootReducers, applyMiddleware(thunk, logger));
+const food = createStore(rootReducers, applyMiddleware(thunk, logger));
 
-export default store;
+export default food;

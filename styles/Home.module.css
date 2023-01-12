@@ -2,14 +2,25 @@
   width: 1000px;
   min-height: 200px;
 }
+#main {
+  width: 220px;
+  height: 300px;
+  border: 1px solid black;
+  display: flex;
+  align-items: baseline;
+}
+
+#main div {
+  flex: 1;
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+}
 
 .main {
-  min-height: 100vh;
-  padding: 4rem 0;
   flex: 1;
+  border: 1px solid black;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
 }
 

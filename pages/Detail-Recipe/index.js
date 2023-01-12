@@ -2,10 +2,44 @@ import Image from "next/image";
 import { globals } from "styled-jsx/css";
 import { Button, Form } from "react-bootstrap";
 import Link from "next/link";
+import Layouts from "../../components/Layouts";
+import Footer from "../../components/Footer";
 
-function DetailRecipe() {
+export async function getStaticPaths() {
+  const res = await fetch(`http://localhost:3500/recipe`);
+  const data = await res.json();
+
+  const paths = data.map((recipe) => ({
+    params: {
+      id_recipe: `${recipe.id_recipe}`,
+    },
+  }));
+  return {
+    paths,
+    fallback: false,
+  };
+}
+export async function getStaticProps(context) {
+  try {
+    const id_recipe = context.params.id_recipe;
+    console.log(id_recipe);
+    const res = await fetch(`http://localhost:3500/recipe/${id_recipe}`);
+    const data = await res.json();
+    console.log(data);
+    return {
+      props: {
+        data,
+      },
+    };
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+function DetailRecipe(data) {
   return (
     <div className="container">
+      <Layouts />
       <div
         className="row justify-content-center mt-4"
         style={{ marginLeft: "1rem" }}
@@ -14,11 +48,17 @@ function DetailRecipe() {
           <h1>Loream Sandwich</h1>
         </div>
         <div
-          className="row justify-content-center mt-5"
+          className="row justify-content-center mt-4"
           style={{ marginLeft: "50px" }}
         >
           <div className="col-10">
-            <Image src="/food1.png" width={900} height={600} alt="" />
+            <Image
+              src="/food1.png"
+              alt=""
+              width={700}
+              height={600}
+              style={{ width: "900px", height: "500px" }}
+            />
           </div>
         </div>
       </div>
@@ -35,28 +75,64 @@ function DetailRecipe() {
         style={{ marginLeft: "50px" }}
       >
         <div className="col-2">
-          <p>
-            - 2 eggs - 2 tbsp mayonnaise - 3 slices bread - a little butter - ⅓
-            carton of cress - 2-3 slices of tomato or a lettuce leaf and a slice
-            of ham or cheese - crisps , to serve
-          </p>
+          <p>{[0].ingredients}</p>
         </div>
-      </div>
-      <div>
-        <div className="mt-4">
-          <h4 className="mb-4">Video Step</h4>
-          <Link
-            href={"/https://www.youtube.com/watch?v=qbw3K7r16Rw"}
-            type="submit"
-            className="btn btn-warning text-white mt-3"
-            style={{
-              position: "absolute",
-              width: "25rem",
-              height: "47px",
-            }}
-          >
-            Link Step
-          </Link>
+        <div>
+          <div className="col-2">
+            <h3>Video Step</h3>
+          </div>
+        </div>
+        <div
+          className="row justify-content-start mt-3"
+          style={{ marginLeft: "50px" }}
+        >
+          <div className="col-2">
+            <button
+              className="btn btn-warning"
+              style={{ width: "190px", height: "45px" }}
+            >
+              <Image src="/video2.png" height={10} width={10} alt="" />
+            </button>
+          </div>
+        </div>
+        <div
+          className="row justify-content-start mt-3"
+          style={{ marginLeft: "50px" }}
+        >
+          <div className="col-2">
+            <button
+              className="btn btn-warning"
+              style={{ width: "190px", height: "45px" }}
+            >
+              <Image src="/video2.png" height={10} width={10} alt="" />
+            </button>
+          </div>
+        </div>
+        <div
+          className="row justify-content-start mt-3"
+          style={{ marginLeft: "50px" }}
+        >
+          <div className="col-2">
+            <button
+              className="btn btn-warning"
+              style={{ width: "190px", height: "45px" }}
+            >
+              <Image src="/video2.png" height={10} width={10} alt="" />
+            </button>
+          </div>
+        </div>
+        <div
+          className="row justify-content-start mt-3"
+          style={{ marginLeft: "50px" }}
+        >
+          <div className="col-2">
+            <button
+              className="btn btn-warning"
+              style={{ width: "190px", height: "45px" }}
+            >
+              <Image src="/video2.png" height={10} width={10} alt="" />
+            </button>
+          </div>
         </div>
         <textarea
           className="form-control bg-light mt-5 mb-3"
@@ -84,6 +160,7 @@ function DetailRecipe() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
