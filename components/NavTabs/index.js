@@ -17,7 +17,7 @@ const NavTabs = () => {
           <Tab eventKey="myrecipe" title="My Recipe">
             <div className="row">
               <div className="col-3">
-                <Image src="/mam.png" height={300} width={300} alt="" />
+                <Image src="/gambar1.png" height={300} width={300} alt="" />
                 <h4
                   style={{
                     marginTop: "-40px",
@@ -30,7 +30,7 @@ const NavTabs = () => {
                 </h4>
               </div>
               <div className="col-3">
-                <Image src="/gambar6.png" height={300} width={300} alt="" />
+                <Image src="/gambar1.png" height={300} width={300} alt="" />
                 <h4
                   style={{
                     marginTop: "-40px",
@@ -60,7 +60,7 @@ const NavTabs = () => {
           <Tab eventKey="savedrecipe" title="Saved Recipe">
             <div className="row">
               <div className="col-3">
-                <Image src="/food4.png" height={300} width={300} alt="" />
+                <Image src="/gambar1.png" height={300} width={300} alt="" />
                 <h4
                   style={{
                     marginTop: "-40px",
@@ -73,7 +73,7 @@ const NavTabs = () => {
                 </h4>
               </div>
               <div className="col-3">
-                <Image src="/food5.png" height={300} width={300} alt="" />
+                <Image src="/gambar1.png" height={300} width={300} alt="" />
                 <h4
                   style={{
                     marginTop: "-40px",
@@ -86,7 +86,7 @@ const NavTabs = () => {
                 </h4>
               </div>
               <div className="col-3">
-                <Image src="/food1.png" height={300} width={300} alt="" />
+                <Image src="/gambar1.png" height={300} width={300} alt="" />
                 <h4
                   style={{
                     marginTop: "-40px",
@@ -103,7 +103,7 @@ const NavTabs = () => {
           <Tab eventKey="likedrecipe" title="Liked Recipe">
             <div className="row">
               <div className="col-3">
-                <Image src="/gambar5.png" height={300} width={300} alt="" />
+                <Image src="/gambar1.png" height={300} width={300} alt="" />
                 <h4
                   style={{
                     marginTop: "-40px",
@@ -116,7 +116,7 @@ const NavTabs = () => {
                 </h4>
               </div>
               <div className="col-3">
-                <Image src="/gambar4.png" height={300} width={300} alt="" />
+                <Image src="/gambar1.png" height={300} width={300} alt="" />
                 <h4
                   style={{
                     marginTop: "-40px",
@@ -129,7 +129,7 @@ const NavTabs = () => {
                 </h4>
               </div>
               <div className="col-3">
-                <Image src="/gambar2.png" height={300} width={300} alt="" />
+                <Image src="/gambar1.png" height={300} width={300} alt="" />
                 <h4
                   style={{
                     marginTop: "-40px",

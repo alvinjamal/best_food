@@ -37,9 +37,9 @@ function detailVideoRecipe() {
             </h6>
             <p className="text-secondary">HanaLohana - 3 month ago</p>
           </div>
-          <div className="col-12 mt-3">
+          {/* <div className="col-12 mt-3">
             <Image src="/video.png" width={1200} height={700} alt="" />
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

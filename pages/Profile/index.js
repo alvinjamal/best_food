@@ -1,6 +1,7 @@
 import axios from "axios";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { getCookies } from "cookies-next";
 import { globals } from "styled-jsx/css";
 import Layouts from "../../components/Layouts";
 import ModalEdit from "../../components/Modal/index";
@@ -27,28 +28,29 @@ import NavTabs from "../../components/NavTabs/index";
 // };
 
 function Profile(id_user) {
-  const [data, setData] = useState();
+  const [profile, setProfile] = useState({});
 
   useEffect(() => {
+    const token = getCookies("token");
     axios
-      .get(`http://localhost:3500/users/${id_user}`)
-      .then((res) => {
-        console.log("Get Data Success");
-        console.log(res.data);
+      .get(`http://localhost:3500/users/profile`, {
+        headers: { Authorization: `Bearer ${token}` },
       })
-      .catch((error) => {
-        console.log("Get Data Failed");
-        console.log(error);
+      .then((res) => {
+        console.log(res);
+        setProfile(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
       });
-  });
-
+  }, []);
   return (
     <div className="container">
       <Layouts />
       <div className="row justify-content-center mt-5">
         <div className="col-1">
           <Image
-            // src={data ? data[0].photo : "Data Not Found"}
+            src={profile.photo}
             width={100}
             height={100}
             alt=""

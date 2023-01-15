@@ -5,36 +5,36 @@ import Link from "next/link";
 import Layouts from "../../components/Layouts";
 import Footer from "../../components/Footer";
 
-export async function getStaticPaths() {
-  const res = await fetch(`http://localhost:3500/recipe`);
-  const data = await res.json();
+// export async function getStaticPaths() {
+//   const res = await fetch(`http://localhost:3500/recipe`);
+//   const data = await res.json();
 
-  const paths = data.map((recipe) => ({
-    params: {
-      id_recipe: `${recipe.id_recipe}`,
-    },
-  }));
-  return {
-    paths,
-    fallback: false,
-  };
-}
-export async function getStaticProps(context) {
-  try {
-    const id_recipe = context.params.id_recipe;
-    console.log(id_recipe);
-    const res = await fetch(`http://localhost:3500/recipe/${id_recipe}`);
-    const data = await res.json();
-    console.log(data);
-    return {
-      props: {
-        data,
-      },
-    };
-  } catch (err) {
-    console.log(err);
-  }
-}
+//   const paths = data.map((recipe) => ({
+//     params: {
+//       id_recipe: `${recipe.id_recipe}`,
+//     },
+//   }));
+//   return {
+//     paths,
+//     fallback: false,
+//   };
+// }
+// export async function getStaticProps(context) {
+//   try {
+//     const id_recipe = context.params.id_recipe;
+//     console.log(id_recipe);
+//     const res = await fetch(`http://localhost:3500/recipe/${id_recipe}`);
+//     const data = await res.json();
+//     console.log(data);
+//     return {
+//       props: {
+//         data,
+//       },
+//     };
+//   } catch (err) {
+//     console.log(err);
+//   }
+// }
 
 function DetailRecipe(data) {
   return (

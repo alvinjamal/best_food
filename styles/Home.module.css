@@ -17,6 +17,14 @@
   align-items: center;
 }
 
+.titleSection {
+  border-left: 15px solid #efc81a;
+  padding: 15px;
+  display: flex;
+  color: #3f3a3a;
+  margin-left: 20px;
+}
+
 .main {
   flex: 1;
   border: 1px solid black;

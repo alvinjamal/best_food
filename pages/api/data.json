@@ -1,0 +1,25 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "alvin",
+      "email": "alvinjamalazkya@gmail.com",
+      "phone": 1234567890,
+      "password": "123"
+    },
+    {
+      "id": 2,
+      "name": "jamal",
+      "email": "alvin.jamalazkya@gmail.com",
+      "phoneNum": 1234567890,
+      "password": "12345"
+    }
+  ],
+  "login": [
+    {
+      "id": 1,
+      "email": "alvinjamalazkya@gmail.com",
+      "password": "123"
+    }
+  ]
+}

@@ -5,10 +5,67 @@ import Head from "next/head";
 import { Button } from "react-bootstrap";
 
 const Layouts = ({ children }) => {
-  // const token = localStorage.getItem("token");
-  // const logout = () => {
-  //   localStorage.clear();
-  //   window.location.reload(false);
+  // const token = JSON.parse(localStorage.getItem("token"));
+  // const router = useRouter();
+  // const [data, setData] = useState([]);
+  // const [recipe, setRecipe] = useState([]);
+  // console.log(data, "dari profile");
+
+  // // useEffect(() => {
+  // const user = JSON.parse(localStorage.getItem("data"));
+
+  // const apiResep = `http://localhost:3500/users/${user.id}`;
+  // useEffect(() => {
+  //   axios
+  //     .get(apiResep)
+  //     .then((result) => {
+  //       result.data && setData(result.data.data[0]);
+  //       console.log(result.data.data[0], "ini data user");
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //       alert("get data fail");
+  //     });
+  // }, []);
+
+  // const myrecipe = () => {
+  //   axios
+  //     .get(`http://localhost:3500/recipe/`, {
+  //       headers: {
+  //         Authorization: `Bearer ${token}`,
+  //       },
+  //     })
+  //     .then((result) => {
+  //       result.data && setRecipe(result.data.data);
+  //       console.log(result.data.data, "ini data my recipe");
+  //       // alert('get my recipe success');
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //       alert("get my recipe fail");
+  //     });
+  // };
+
+  // useEffect(() => {
+  //   myrecipe();
+  //   console.log(recipe.id, "data recipe");
+  // }, []);
+
+  // const handleDelete = (id) => {
+  //   axios
+  //     .delete(`http://localhost:3500/recipe/${id}`, {
+  //       headers: {
+  //         Authorization: `Bearer ${token}`,
+  //       },
+  //     })
+  //     .then((result) => {
+  //       alert("delete recipe success");
+  //       myrecipe();
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //       alert("delete recipe fail");
+  //     });
   // };
   return (
     <>
@@ -21,7 +78,7 @@ const Layouts = ({ children }) => {
         <div className="container">
           <div className="row">
             <div className="col-1">
-              <Link href="/Landing-Page">
+              <Link href="/">
                 {" "}
                 <h4>Home</h4>{" "}
               </Link>

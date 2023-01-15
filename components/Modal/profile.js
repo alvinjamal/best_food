@@ -4,7 +4,9 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 
-function ModalEdit() {
+const css = { maxWidth: "100%", height: "auto", minWidth: "30%" };
+
+function ModalProfile() {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -39,4 +41,4 @@ function ModalEdit() {
   );
 }
 
-export default ModalEdit;
+export default ModalProfile;
