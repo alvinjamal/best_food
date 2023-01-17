@@ -11,7 +11,32 @@ function ModalProfile() {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const [file, setFile] = useState({
+    file: null,
+    priview: "",
+  });
 
+  const handleUploadChange = (e) => {
+    console.log(e.target.files[0]);
+    let upload = e.target.files[0];
+    setFile(upload);
+  };
+
+  const handleData = (e) => {
+    e.preventDefault();
+    const localdata = localStorage.getItem("Ankasa");
+    const { token } = JSON.parse(localdata);
+    const formData = new FormData();
+    formData.append("photo", file);
+    dispatch(editProfile(id, formData, token));
+    dispatch(detailProfile(token));
+  };
+
+  useEffect(() => {
+    const localdata = localStorage.getItem("token");
+    const { token } = JSON.parse(localdata);
+    dispatch(detailProfile(token));
+  }, []);
   return (
     <div>
       <div className="btn mt-1" onClick={handleShow} />
@@ -32,7 +57,7 @@ function ModalProfile() {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="warning" onClick={handleClose}>
+          <Button variant="warning" onClick={(e) => handleData}>
             Save Changes
           </Button>
         </Modal.Footer>

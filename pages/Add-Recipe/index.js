@@ -104,7 +104,7 @@ function AddRecipe() {
               </div>
             </div>
           </div>
-          <div className="bg-secondary mt-3">
+          {/* <div className="bg-secondary mt-3">
             <div className="row text-start">
               <div className="col-lg-12">
                 <input
@@ -119,7 +119,7 @@ function AddRecipe() {
                 />
               </div>
             </div>
-          </div>
+          </div> */}
           <div className="mt-3 mb-5">
             <div className="row">
               <div className="col-lg-12">

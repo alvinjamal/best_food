@@ -7,240 +7,194 @@ import Footer from "../components/Footer";
 import Link from "next/link";
 import Layouts from "../components/Layouts";
 import styles from "../styles/Home.module.css";
-import CardRecipe from "../components/Layouts/card";
 import { Button } from "react-bootstrap";
 
-const LandingPage = () => {
-  const [recipes, setRecipes] = useState([]);
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable react-hooks/rules-of-hooks */
+/* eslint-disable @next/next/no-img-element */
+/* eslint-disable jsx-a11y/alt-text */
+
+// export async function getServerSideProps(context) {
+//   const res = await fetch(`http://localhost:3500/recipe`);
+//   const { token } = context.req.cookies;
+//   const data = await res.json();
+//   console.log(data);
+//   return {
+//     props: {
+//       data,
+//       Login: token ? true : false,
+//     },
+//   };
+// }
+
+const LandingPage = (token, login) => {
   const [data, setData] = useState("");
-  const [search, setSearch] = useState("");
+  const [key, setKey] = useState("myrecipe");
   const router = useRouter();
   useEffect(() => {
-    const fetch = async () => {
-      try {
-        const result = await axios.get(
-          `http://localhost:3500/recipe?search=${router.query.keyword}`
-        );
-        setData(result.data);
-        setRecipes(result.data.data);
-        setSearch(router.query.keyword);
-      } catch (error) {
-        console.log(error);
-        if (error.response.data.message === "Data not found") {
-          setRecipes(`Data not found`);
-          setData("");
-          setSearch("");
-        }
-        return Swal({
-          title: "Warning!",
-          text: `${error.response.data.message}`,
-          icon: "warning",
-        });
-      }
-    };
-    if (router.query.keyword !== undefined) {
-      console.log(router.query.keyword);
-      fetch();
-    }
-  }, [router.query.keyword]);
-
-  const handleSearchInput = (e) => {
-    setSearch(e.target.value);
-  };
-
-  const handleSubmitSearch = (e) => {
-    e.preventDefault();
-    if (search === router.query.keyword) {
-      return Swal({
-        title: "Warning!",
-        text: `This is the result of ${search}`,
-        icon: "warning",
+    axios
+      .get(`http://localhost:3500/recipe`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((res) => {
+        console.log("get data success");
+        console.log(res.data);
+        res.data && setData(res.data.data);
+      })
+      .catch((err) => {
+        console.log("get data fail");
+        console.log(err);
       });
-    }
-    router.push(`search?keyword=${search}`);
-  };
-
+  }, []);
   return (
     <div className="container">
-      <Layouts />
-      <div>
-        <div className="food">
-          <form
-            className="box col-4"
-            style={{ marginTop: "18px", color: "blue" }}
-            onSubmit={handleSubmitSearch}
-          >
-            <h1>Discover recipe & Delicious food</h1>
-            <span className="icon"></span>
-            <input
-              type="search"
-              className="search"
-              placeholder="Search Restaurant Food"
-              id="search"
-              defaultValue={router.query.keyword}
-              onChange={handleSearchInput}
-            />
-          </form>
-          <div>
-            <div
-              className="wrapper-right"
-              style={{
-                display: "flex",
-                alignItems: "center",
-                marginLeft: "55%",
-                // backgroundImage: `url(/bg.png)`,
-                borderRadius: "12px",
-                // width: "725px",
-                height: "570px",
-              }}
-            >
-              <div
-                className="img"
-                style={{ height: "650px", width: "880px", marginTop: "1rem" }}
-              >
-                <Image
-                  src="/food1.png"
-                  alt="makanan"
-                  width={600}
-                  height={650}
-                />
-              </div>
-            </div>
-          </div>
-          <h4 className="title" style={{ marginTop: "2rem" }}>
-            <span></span>popular For You!
-          </h4>
+      <Layouts Login={login} />
+
+      <div
+        className="row align-items-center bg-white"
+        style={{ marginTop: "80px" }}
+      >
+        <div className="col-4 ">
+          <h1>Discover Recipe & Delicious Food</h1>
+          <input
+            type="searchs"
+            className="form-control rounded-2 bg-light"
+            name="search"
+            placeholder="search restaurant, food"
+          />
         </div>
-        <section className="mb-5">
-          <div className={`${styles.titleSection}  mb-4 mb-md-5`}>
-            <h1>Search Result</h1>
-          </div>
-          <div className="row">
-            {recipes.length >= 1 &&
-              recipes.map((item) => {
-                return (
-                  <CardRecipe
-                    key={item.id}
-                    photo={item.image}
-                    title={item.title}
-                    // type='edit'
-                    path={() => router.push(`/recipe/${item.id}`)}
-                  />
-                );
-              })}
-          </div>
-        </section>
-        <div className="wrapper" style={{ marginBottom: "2rem" }}>
-          <div
-            style={{
-              border: "3px solid #EFC81A",
-              width: "700px",
-              height: "600px",
-            }}
-          >
-            <div
-              className="wrapper-left"
-              style={{
-                // backgroundImage: `url(/bg2.png)`,
-                height: "700px",
-                width: "720px",
-                borderRadius: "10px",
-              }}
-            >
-              <div className="wrapper-img-popular">
-                <Image
-                  src="/food2.png"
-                  alt="makanan"
-                  width={600}
-                  height={500}
-                />
-              </div>
-            </div>
-          </div>
-          <div className="wrapper-right" style={{ marginLeft: "100px" }}>
-            <div>
-              <h2 className="subtitle">
-                Healthy Bone Broth Ramen (Quick & Easy)
-              </h2>
-              <p>
-                Quick + Easy Chicken Bone Broth Ramen- Healthy chicken ramen in
-                a hurry? That’s right!
-              </p>
-              <button className="button">Learn More</button>
-            </div>
-          </div>
+        <div className="col-4 offset-3 " style={{ marginBottom: "120px" }}>
+          <Image src="/food1.png" height={500} width={500} priority alt="" />
         </div>
-        <h1 className="title" style={{ marginTop: "5rem" }}>
-          <span></span>New Recipe
-        </h1>
-        <div className="wrapper">
-          <div
-            className="wrapper-left"
-            style={{
-              backgroundColor: `#EFC81A`,
-              borderRadius: "12px",
-              height: "40rem",
-              width: "50rem",
-            }}
-          >
-            <div
-              className="wrapper-img-popular mb-5"
-              style={{ marginTop: "15rem" }}
-            >
-              <Image
-                style={{ marginLeft: "2rem" }}
-                src="/mam.png"
-                alt="makanan"
-                width={600}
-                height={500}
-              />
-            </div>
-          </div>
-          <div className="wrapper-right" style={{ marginLeft: "60px" }}>
-            <div style={{ marginLeft: "5rem" }}>
-              <h2 className="subtitle">
-                Healthy Bone Broth Ramen (Quick & Easy)
-              </h2>
-              <p>
-                Quick + Easy Chicken Bone Broth Ramen- Healthy chicken ramen in
-                a hurry? That’s right!
-              </p>
-              <button className="button">Learn More</button>
-            </div>
-          </div>
-        </div>
-        <div>
-          <h1 className="title " style={{ marginTop: "7rem" }}>
-            <span></span>Popular Recipe
-          </h1>
-        </div>
-        <Button
-          variant="light"
-          className="popular-img col-12 p-10 mt-10"
-          style={{ padding: "1rem" }}
-          href="/Detail-Recipe"
-        >
-          <div className="img-shop mt-5">
-            <Image src="/gambar1.png" alt="makanan" width={400} height={350} />
-          </div>
-          <div className="img-shop mt-5">
-            <Image src="/gambar2.png" alt="makanan" width={400} height={350} />
-          </div>
-          <div className="img-shop mt-5">
-            <Image src="/gambar3.png" alt="makanan" width={400} height={350} />
-          </div>
-          <div className="img-shop mb-4">
-            <Image src="/gambar4.png" alt="makanan" width={400} height={350} />
-          </div>
-          <div className="img-shop mb-4">
-            <Image src="/gambar5.png" alt="makanan" width={400} height={350} />
-          </div>
-          <div className="img-shop mb-4">
-            <Image src="/gambar6.png" alt="makanan" width={400} height={350} />
-          </div>
-        </Button>
-        <Footer />
       </div>
+      <div className="row align-items-center bg-white">
+        <div className="col-1">
+          <div
+            style={{
+              backgroundColor: "#EFC81A",
+              height: "60px",
+              width: "10px",
+            }}
+          ></div>
+        </div>
+        <div className="col-11">
+          <h3 className="mt-4">Popular For You !</h3>
+        </div>
+      </div>
+      <div className="row align-items-center bg-white">
+        <div
+          className="col-6"
+          style={{ marginTop: "90px", marginBottom: "100px" }}
+        >
+          <Image src="/food2.png" height={500} width={500} alt="" />
+        </div>
+        <div className="col-4 offset-1">
+          <h1>Healthy Bone Broth Ramen (Quick & Easy)</h1>
+          <div
+            style={{
+              backgroundColor: "#6F6A40",
+              height: "2px",
+              width: "70px",
+            }}
+          ></div>
+          <p className="mt-4">
+            Quick + Easy Chicken Bone Broth Ramen- Healthy chicken ramen in a
+            hurry? That’s right!
+          </p>
+          <Button
+            variant="warning"
+            size="lg"
+            style={{ width: "12rem", height: "3rem" }}
+          >
+            Learn More
+          </Button>
+        </div>
+      </div>
+      <div className="row align-items-center bg-white">
+        <div className="col-1">
+          <div
+            style={{
+              backgroundColor: "#EFC81A",
+              height: "60px",
+              width: "10px",
+            }}
+          ></div>
+        </div>
+        <div className="col-11">
+          <h3 className={[styles.colorfont, "mt-5"]}>New Recipe</h3>
+        </div>
+        <div className="row align-items-center bg-white">
+          <div
+            className="col-6"
+            style={{ marginTop: "90px", marginBottom: "100px" }}
+          >
+            <Image src="/food3.png" height={500} width={500} alt="" />
+          </div>
+          <div className="col-4 offset-1">
+            <h1>Healthy Bone Broth Ramen (Quick & Easy)</h1>
+            <div
+              style={{
+                backgroundColor: "#6F6A40",
+                height: "2px",
+                width: "70px",
+              }}
+            ></div>
+            <p className="mt-4">
+              Quick + Easy Chicken Bone Broth Ramen- Healthy chicken ramen in a
+              hurry? That’s right!
+            </p>
+            <Button
+              variant="warning"
+              size="lg"
+              style={{ width: "12rem", height: "3rem" }}
+            >
+              Learn More
+            </Button>
+          </div>
+        </div>
+      </div>
+      <div className="row align-items-center bg-white">
+        <div className="col-1">
+          <div
+            style={{
+              backgroundColor: "#EFC81A",
+              height: "60px",
+              width: "10px",
+            }}
+          ></div>
+        </div>
+        <div className="col-11">
+          <h3 className="mt-2">Popular Recipe</h3>
+        </div>
+        <div className="row align-items-center bg-white mb-5">
+          {data ? (
+            data.map((item) => (
+              <div
+                className="col-4"
+                style={{ marginTop: "90px", marginBottom: "10px" }}
+                key={item.id_recipe}
+                onClick={() => router.push(`/Detail-Recipe/${item.id_recipe}`)}
+              >
+                <img
+                  src={item.photo}
+                  style={{ height: "400px", width: "400px" }}
+                  alt=""
+                />
+                <h6
+                  style={{ marginTop: "-40px", marginLeft: "13px" }}
+                  className="text-white"
+                >
+                  {item.title}
+                </h6>
+              </div>
+            ))
+          ) : (
+            <h1 className="mt-5">Please Wait...</h1>
+          )}
+        </div>
+      </div>
+
+      <Footer />
     </div>
   );
 };

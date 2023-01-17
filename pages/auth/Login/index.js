@@ -2,19 +2,20 @@ import React, { useState } from "react";
 import { Button, Row, Col, Form } from "react-bootstrap";
 import Image from "next/image";
 import Link from "next/link";
-import { useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
-import { LoginUser } from "../../Redux/action/login";
+import axios from "axios";
 import Swal from "sweetalert2";
+
+/* eslint-disable react-hooks/rules-of-hooks */
+/* eslint-disable jsx-a11y/alt-text */
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const dispatch = useDispatch();
   const router = useRouter();
 
-  const postData = (e) => {
+  const postData = async (e) => {
     e.preventDefault();
     email;
     password;
@@ -22,8 +23,36 @@ function Login() {
       email,
       password,
     };
-    dispatch(LoginUser(data, router));
-    Swal.fire("Success", "Login Success,Returning to home", "success");
+    const config = {
+      withCredentials: true,
+      "Access-Control-Allow-Origin": "*",
+    };
+    const result = await axios.post(
+      `http://localhost:3500/users/login`,
+      data,
+      config
+    );
+    const token = result.data.message.token;
+    const id_user = result.data.message.id_user;
+    const dataToken = {
+      token: token,
+      id_user: id_user,
+    };
+    const cookie = await fetch("/pages/api/login.js", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(dataToken),
+    });
+    const checkToken = await cookie.json();
+    if (!checkToken) {
+      return Swal.fire("warning", "Login Failed", "error");
+    }
+    Swal.fire("success", "Login Success", "success");
+    console.log(dataToken);
+    router.push("/");
   };
   return (
     <div className="body">

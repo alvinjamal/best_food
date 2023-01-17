@@ -3,7 +3,7 @@ import { global } from "styled-jsx/css";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
-import { RegisterUser } from "../../Redux/action/register";
+import { RegisterUser } from "../../../Redux/action/register";
 import { Col, Row, Form, Button } from "react-bootstrap";
 import Swal from "sweetalert2";
 

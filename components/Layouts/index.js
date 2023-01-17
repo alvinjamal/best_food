@@ -1,72 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Head from "next/head";
+import { useRouter } from "next/router";
 import { Button } from "react-bootstrap";
 
-const Layouts = ({ children }) => {
-  // const token = JSON.parse(localStorage.getItem("token"));
-  // const router = useRouter();
-  // const [data, setData] = useState([]);
-  // const [recipe, setRecipe] = useState([]);
-  // console.log(data, "dari profile");
+const Layouts = ({ children, login }) => {
+  const router = useRouter();
 
-  // // useEffect(() => {
-  // const user = JSON.parse(localStorage.getItem("data"));
+  const logout = async () => {
+    try {
+      const result = await fetch("/api/logout");
+      const { logout } = await result.json();
+      if (logout) {
+        Swal.fire("success", "Anda Berhasil Logout", "success");
+        router.push("/login");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
-  // const apiResep = `http://localhost:3500/users/${user.id}`;
-  // useEffect(() => {
-  //   axios
-  //     .get(apiResep)
-  //     .then((result) => {
-  //       result.data && setData(result.data.data[0]);
-  //       console.log(result.data.data[0], "ini data user");
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //       alert("get data fail");
-  //     });
-  // }, []);
-
-  // const myrecipe = () => {
-  //   axios
-  //     .get(`http://localhost:3500/recipe/`, {
-  //       headers: {
-  //         Authorization: `Bearer ${token}`,
-  //       },
-  //     })
-  //     .then((result) => {
-  //       result.data && setRecipe(result.data.data);
-  //       console.log(result.data.data, "ini data my recipe");
-  //       // alert('get my recipe success');
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //       alert("get my recipe fail");
-  //     });
-  // };
-
-  // useEffect(() => {
-  //   myrecipe();
-  //   console.log(recipe.id, "data recipe");
-  // }, []);
-
-  // const handleDelete = (id) => {
-  //   axios
-  //     .delete(`http://localhost:3500/recipe/${id}`, {
-  //       headers: {
-  //         Authorization: `Bearer ${token}`,
-  //       },
-  //     })
-  //     .then((result) => {
-  //       alert("delete recipe success");
-  //       myrecipe();
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //       alert("delete recipe fail");
-  //     });
-  // };
   return (
     <>
       <Head>
@@ -95,32 +49,38 @@ const Layouts = ({ children }) => {
                 <h4>Profile</h4>{" "}
               </Link>
             </div>
-            {/* {token ? ( */}
-            <>
-              {/* <div className="col-1 offset-5" style={{ marginLeft: "5px" }}>
-                <Button
-                  className="btn btn-danger btn-small"
+
+            <div className="col-1 offset-7">
+              {!login ? (
+                <div
+                  className="btn"
+                  style={{ borderRadius: "30px" }}
                   onClick={() => logout()}
                 >
-                  Logout
-                </Button>
-              </div> */}
-            </>
-            {/* ) : ( */}
-            <div className="col-1 offset-5">
-              <Link href="/Login">
-                <div className="btn" style={{ borderRadius: "30px" }}>
                   <Image
-                    src="/panel.png"
-                    height={40}
-                    width={80}
-                    alt=""
+                    src="/user.png"
+                    height={20}
+                    width={20}
                     priority
+                    alt=""
                   />
+                  <h6>Logout</h6>
                 </div>
-              </Link>
+              ) : (
+                <Link href="/auth/Login">
+                  <div className="btn" style={{ borderRadius: "30px" }}>
+                    <Image
+                      src="/user.png"
+                      height={20}
+                      width={20}
+                      priority
+                      alt=""
+                    />
+                    <h6>Login</h6>
+                  </div>
+                </Link>
+              )}
             </div>
-            {/* )} */}
           </div>
         </div>
       </nav>
