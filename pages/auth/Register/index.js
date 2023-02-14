@@ -52,7 +52,7 @@ const Register = () => {
               <div
                 className="login text-center mt-3 text-warning"
                 style={{
-                  marginRight: "20%",
+                  // marginRight: "20%",
                   fontWeight: "bold",
                   fontSize: 30,
                 }}
@@ -61,13 +61,13 @@ const Register = () => {
               </div>
               <h5
                 className="text-secondary text-center mt-2 "
-                style={{ marginRight: "50px" }}
+                // style={{ marginRight: "50px" }}
               >
                 Create new account to access all features
               </h5>
             </div>
             <div className="input ">
-              <Form onSubmit={postData} className="container mb-3 col-8 mt-4 ">
+              <Form onSubmit={postData} className="container mb-3 col-5 mt-4 ">
                 <h5>Full Name</h5>
                 <input
                   type="name"

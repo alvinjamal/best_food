@@ -1,4 +1,5 @@
 import axios from "axios";
+import Swal from "sweetalert2";
 
 export const RegisterUser = (data, router) => async (dispatch) => {
   try {
@@ -8,12 +9,25 @@ export const RegisterUser = (data, router) => async (dispatch) => {
       data
     );
     const user = result.data.data;
-    // localStorage.setItem("token", user.token);
+    localStorage.setItem("token", user.token);
     dispatch({ type: "USER_REGISTER_SUCCESS", payload: user });
-    router.push("/Verif-Otp");
-    console.log(" Register success");
+    Swal.fire({
+      title: "Good job!",
+      text: `${result.data.message}`,
+      icon: "success",
+      timer: "3000",
+      showConfirmButton: false,
+    }).then(() => {
+      router.push("/auth/Verif-Otp");
+    });
+    console.log("Register Success");
   } catch (err) {
-    console.log(" Register err");
-    console.log(err);
+    Swal.fire({
+      title: "Please Try Again Register",
+      text: `${err.response.data.message}`,
+      icon: "error",
+      timer: "3000",
+      showConfirmButton: false,
+    });
   }
 };

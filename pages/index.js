@@ -7,6 +7,7 @@ import Footer from "../components/Footer";
 import Link from "next/link";
 import Layouts from "../components/Layouts";
 import styles from "../styles/Home.module.css";
+import cookie from "js-cookie";
 import { Button } from "react-bootstrap";
 
 /* eslint-disable react-hooks/exhaustive-deps */
@@ -14,38 +15,28 @@ import { Button } from "react-bootstrap";
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable jsx-a11y/alt-text */
 
-// export async function getServerSideProps(context) {
-//   const res = await fetch(`http://localhost:3500/recipe`);
-//   const { token } = context.req.cookies;
-//   const data = await res.json();
-//   console.log(data);
-//   return {
-//     props: {
-//       data,
-//       Login: token ? true : false,
-//     },
-//   };
-// }
+export async function getServerSideProps(context) {
+  const cookie = context.req.headers.cookie;
+  console.log(cookie);
+  const res = await axios.get("http://localhost:3500/recipe", {
+    withCredentials: true,
+    headers: {
+      Cookie: cookie,
+    },
+  });
+  console.log("ini data", res.data);
+  return {
+    props: {
+      data: res.data.data,
+      // login: token ? true : false,
+    },
+  };
+}
 
-const LandingPage = (token, login) => {
-  const [data, setData] = useState("");
+const LandingPage = ({ data, login }) => {
+  // const [data, setData] = useState("");
   const [key, setKey] = useState("myrecipe");
   const router = useRouter();
-  useEffect(() => {
-    axios
-      .get(`http://localhost:3500/recipe`, {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      .then((res) => {
-        console.log("get data success");
-        console.log(res.data);
-        res.data && setData(res.data.data);
-      })
-      .catch((err) => {
-        console.log("get data fail");
-        console.log(err);
-      });
-  }, []);
   return (
     <div className="container">
       <Layouts Login={login} />
@@ -54,13 +45,14 @@ const LandingPage = (token, login) => {
         className="row align-items-center bg-white"
         style={{ marginTop: "80px" }}
       >
-        <div className="col-4 ">
+        <div className="col-3 text-primary">
           <h1>Discover Recipe & Delicious Food</h1>
           <input
-            type="searchs"
+            type="search"
             className="form-control rounded-2 bg-light"
+            style={{ width: "22rem", height: "3rem" }}
             name="search"
-            placeholder="search restaurant, food"
+            placeholder="Search restaurant, food"
           />
         </div>
         <div className="col-4 offset-3 " style={{ marginBottom: "120px" }}>
@@ -77,8 +69,8 @@ const LandingPage = (token, login) => {
             }}
           ></div>
         </div>
-        <div className="col-11">
-          <h3 className="mt-4">Popular For You !</h3>
+        <div className="col-10">
+          <h3 className="mt-2">Popular For You !</h3>
         </div>
       </div>
       <div className="row align-items-center bg-white">
@@ -86,7 +78,7 @@ const LandingPage = (token, login) => {
           className="col-6"
           style={{ marginTop: "90px", marginBottom: "100px" }}
         >
-          <Image src="/food2.png" height={500} width={500} alt="" />
+          <Image src="/food2.png" height={500} width={500} priority alt="" />
         </div>
         <div className="col-4 offset-1">
           <h1>Healthy Bone Broth Ramen (Quick & Easy)</h1>
@@ -120,7 +112,7 @@ const LandingPage = (token, login) => {
             }}
           ></div>
         </div>
-        <div className="col-11">
+        <div className="col-10">
           <h3 className={[styles.colorfont, "mt-5"]}>New Recipe</h3>
         </div>
         <div className="row align-items-center bg-white">
@@ -163,7 +155,7 @@ const LandingPage = (token, login) => {
             }}
           ></div>
         </div>
-        <div className="col-11">
+        <div className="col-10">
           <h3 className="mt-2">Popular Recipe</h3>
         </div>
         <div className="row align-items-center bg-white mb-5">
@@ -177,19 +169,29 @@ const LandingPage = (token, login) => {
               >
                 <img
                   src={item.photo}
-                  style={{ height: "400px", width: "400px" }}
+                  style={{
+                    height: "400px",
+                    width: "400px",
+                    borderRadius: "12px",
+                  }}
                   alt=""
                 />
-                <h6
-                  style={{ marginTop: "-40px", marginLeft: "13px" }}
+                <h5
+                  style={{
+                    marginTop: "-40px",
+                    marginLeft: "13px",
+                    fontWeight: "bold",
+                  }}
                   className="text-white"
                 >
                   {item.title}
-                </h6>
+                </h5>
               </div>
             ))
           ) : (
-            <h1 className="mt-5">Please Wait...</h1>
+            <>
+              <h1 className="mt-5">Please Wait...</h1>
+            </>
           )}
         </div>
       </div>

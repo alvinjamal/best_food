@@ -11,10 +11,12 @@ const Code = () => {
           style={{
             backgroundImage: `url(/col.png)`,
             height: "800px",
-            width: "700px",
+            width: "800px",
             opacity: 0.2,
+            marginLeft: "10rem",
+            marginTop: "2rem",
           }}
-        ></div>
+        />
       </Col>
       <Col>
         {" "}
@@ -22,7 +24,16 @@ const Code = () => {
           <div className="text align-items-center">
             <div className="input ">
               <form className="container mb-3 col-8 mt-5 ">
-                <h5>Change Password</h5>
+                <div
+                  className="Forgot text-start mt-3 mb-3 text-warning"
+                  style={{
+                    marginLeft: "10%",
+                    fontWeight: "bold",
+                    fontSize: 30,
+                  }}
+                >
+                  Change Password
+                </div>
                 <input
                   type="text"
                   className="form-control mb-2"

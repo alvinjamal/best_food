@@ -10,54 +10,57 @@ import { Button, Form } from "react-bootstrap";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { useEffect } from "react";
+import axios from "axios";
 import Layouts from "../../components/Layouts";
 import Footer from "../../components/Footer";
 import { useState } from "react";
+import Swal from "sweetalert2";
 
 export async function getServerSideProps(context) {
-  try {
-    const id_recipe = context.params.id_recipe;
-    console.log(id_recipe);
-    const res = await fetch(`http://localhost:3500/recipe/${id_recipe}`);
-    const data = await res.json();
-    console.log(data);
-    const { token } = context.req.cookies;
-    console.log(data, id_recipe);
-    return {
-      props: {
-        data,
-        id_recipe,
-        token: token,
+  const id_recipe = context.params.id_recipe;
+  const cookie = context.req.headers.cookie;
+  const res = await axios.get(
+    `http://localhost:3500/recipe/detail/${id_recipe}`,
+    {
+      withCredentials: true,
+      headers: {
+        Cookie: cookie,
       },
-    };
-  } catch (err) {
-    console.log(err);
-  }
+    }
+  );
+  return {
+    props: {
+      data: res.data.data,
+      id_recipe,
+      token: `token=${cookie}`,
+      // login: token ? true : false,
+    },
+  };
 }
 
 function DetailRecipe({ data, id_recipe, token }) {
-  console.log(data, token);
-
   const router = useRouter([]);
   const user = {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   };
-  const [dataComment, setDataComment] = useState([]);
-  useEffect(() => {
-    axios
-      .get(`http://localhost:3500/recipe/comment/${id_recipe}`)
-      .then((res) => {
-        console.log("Get comment by recipe success");
-        console.log(res.data);
-        res.data && setDataComment(res.data.data);
-      })
-      .catch((err) => {
-        console.log("Get comment by recipe fail");
-        console.log(err);
-      });
-  }, []);
+
+  const [dataComment, setDataComment] = useState([""]);
+
+  // useEffect(() => {
+  //   axios
+  //     .get(`http://localhost:3500/recipe/comment/${id_recipe}`)
+  //     .then((res) => {
+  //       console.log("Get comment recipe success");
+  //       console.log(res.data);
+  //       res.data && setDataComment(res.data.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log("Get comment recipe fail");
+  //       console.log(err);
+  //     });
+  // }, []);
   const [postData, setPostData] = useState([]);
   const handleChange = (e) => {
     setPostData({
@@ -130,8 +133,9 @@ function DetailRecipe({ data, id_recipe, token }) {
         className="row justify-content-center mt-4"
         style={{ marginLeft: "1rem" }}
       >
-        <div className="col-4">
-          <h1>{data.data[0].title}</h1>
+        <div className="col-2 text-primary">
+          <h1 style={{ fontWeight: "bold" }}>{data.title}</h1>
+          {/* <h1>Title</h1> */}
         </div>
         <div
           className="row justify-content-center mt-4"
@@ -139,9 +143,9 @@ function DetailRecipe({ data, id_recipe, token }) {
         >
           <div className="col-10">
             <img
-              src={data.data[0].photo}
+              src={data.photo}
               alt=""
-              style={{ width: "900px", height: "500px" }}
+              style={{ width: "900px", height: "500px", borderRadius: "12px" }}
             />
           </div>
         </div>
@@ -159,7 +163,7 @@ function DetailRecipe({ data, id_recipe, token }) {
         style={{ marginLeft: "50px" }}
       >
         <div className="col-2">
-          <p>{data.data[0].ingredients}</p>
+          <p>{data.ingredients}</p>
         </div>
         <div>
           <div className="col-2">
@@ -173,12 +177,11 @@ function DetailRecipe({ data, id_recipe, token }) {
           <div className="col-2">
             <button
               className="btn btn-warning"
-              onClick={() =>
-                router.push(`/detail-recipe/${data.data[0].id_recipe}`)
-              }
+              key={data.id_recipe}
+              onClick={() => router.push(`/Detail-Video/${data.id_recipe}`)}
               style={{ width: "190px", height: "45px" }}
             >
-              <Image src="/video2.png" height={10} width={10} alt="" />
+              <Image src="/play.png" height={15} width={15} alt="" />
             </button>
           </div>
         </div>
@@ -191,7 +194,7 @@ function DetailRecipe({ data, id_recipe, token }) {
               className="btn btn-warning"
               style={{ width: "190px", height: "45px" }}
             >
-              <Image src="/video2.png" height={10} width={10} alt="" />
+              <Image src="/play.png" height={15} width={15} alt="" />
             </button>
           </div>
         </div>
@@ -204,7 +207,7 @@ function DetailRecipe({ data, id_recipe, token }) {
               className="btn btn-warning"
               style={{ width: "190px", height: "45px" }}
             >
-              <Image src="/video2.png" height={10} width={10} alt="" />
+              <Image src="/play.png" height={15} width={15} alt="" />
             </button>
           </div>
         </div>
@@ -214,7 +217,7 @@ function DetailRecipe({ data, id_recipe, token }) {
           rows="9"
           placeholder="Comment"
           onChange={(e) => handleChange(e)}
-          value={postData.comment_text}
+          value={postData.comment}
         ></textarea>
         <Button
           type="submit"
@@ -240,8 +243,8 @@ function DetailRecipe({ data, id_recipe, token }) {
                   />
                 </div>
                 <div className="col-5">
-                  <h6>{item.fullname_user}</h6>
-                  <p>{item.comment_text}</p>
+                  <h5>{item.fullname}</h5>
+                  <p>{item.comment}</p>
                 </div>
               </div>
             ))

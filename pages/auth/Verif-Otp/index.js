@@ -4,7 +4,7 @@ import { Col, Row, Form, Button } from "react-bootstrap";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
-import { VerifOtpUser } from "../../Redux/action/otp";
+import { VerifOtpUser } from "../../../Redux/action/otp";
 
 const VerifOtp = () => {
   const [otp, setOtp] = useState("");
@@ -15,12 +15,10 @@ const VerifOtp = () => {
 
   const postData = (e) => {
     e.preventDefault();
-    console.log(otp, email);
     let data = {
       otp,
       email,
     };
-    console.log(data);
 
     dispatch(VerifOtpUser(data, router));
   };
@@ -28,7 +26,6 @@ const VerifOtp = () => {
     <div className="body">
       <Row>
         <Col>
-          {" "}
           <div
             style={{
               backgroundImage: `url(/col.png)`,
@@ -41,14 +38,23 @@ const VerifOtp = () => {
           />
         </Col>
         <Col>
-          {" "}
           <div className="row">
             <div className="text align-items-center">
               <div className="input ">
                 <Form
                   onSubmit={postData}
-                  className="container mb-3 col-8 mt-5 "
+                  className="container mb-3 col-5 mt-5 "
                 >
+                  <div
+                    className="Forgot text-center mt-3 mb-3 text-warning"
+                    style={{
+                      marginRight: "20%",
+                      fontWeight: "bold",
+                      fontSize: 30,
+                    }}
+                  >
+                    Verification Otp
+                  </div>
                   <h5>E-mail</h5>
                   <input
                     type="email"

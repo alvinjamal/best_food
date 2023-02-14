@@ -4,26 +4,27 @@ import { useDispatch } from "react-redux";
 import Swal from "sweetalert2";
 import Layouts from "../../components/Layouts";
 import { addRecipeData } from "../../Redux/action/add-Recipe";
+import { Button } from "react-bootstrap";
 
-// export const getServerSideProps = async (context) => {
-//   const { token } = context.req.cookies;
-//   console.log(token);
-//   if (!token) {
-//     return {
-//       redirect: {
-//         destination: "/Login",
-//         permanent: true,
-//       },
-//     };
-//   }
+export const getServerSideProps = async (context) => {
+  const { token } = context.req.cookies;
+  console.log(token);
+  if (!token) {
+    return {
+      redirect: {
+        destination: "/Login",
+        permanent: true,
+      },
+    };
+  }
 
-//   return {
-//     props: {
-//       isLogin: true,
-//       token: token,
-//     },
-//   };
-// };
+  return {
+    props: {
+      isLogin: true,
+      token: token,
+    },
+  };
+};
 
 function AddRecipe() {
   const [title, setTitle] = useState("");
@@ -40,10 +41,6 @@ function AddRecipe() {
 
   const postData = (e) => {
     e.preventDefault();
-    console.log(title);
-    console.log(ingredients);
-    console.log(photo);
-    console.log(video);
     let data = {
       title,
       ingredients,
@@ -51,16 +48,16 @@ function AddRecipe() {
       video,
     };
     dispatch(addRecipeData(data));
-    Swal.fire("Success", "Post Success", "success");
   };
   return (
     <div className="container">
       <Layouts />
       <div>
         <Form onSubmit={postData}>
-          <div className="bg-secondary">
+          <div className="">
             <div className="row  mt-5">
               <div className="col-lg-12">
+                <h4 className="bg-white mb-3 text-secondary">Photo</h4>
                 <input
                   type="file"
                   id="photo"
@@ -73,9 +70,10 @@ function AddRecipe() {
               </div>
             </div>
           </div>
-          <div className="bg-secondary">
+          <div className="">
             <div className="row text-start mt-3 ">
               <div className="col-lg-12 ">
+                <h4 className="bg-white mb-3 text-secondary">Title</h4>
                 <input
                   type="text"
                   id="title"
@@ -89,9 +87,10 @@ function AddRecipe() {
               </div>
             </div>
           </div>
-          <div className="bg-secondary mt-3">
+          <div className=" mt-3">
             <div className="row text-start">
               <div className="col-lg-12">
+                <h4 className="bg-white mb-3 text-secondary">Ingredients</h4>
                 <textarea
                   class="form-control bg-light"
                   id="exampleFormControlTextarea1"
@@ -104,11 +103,12 @@ function AddRecipe() {
               </div>
             </div>
           </div>
-          {/* <div className="bg-secondary mt-3">
+          <div className=" mt-3">
             <div className="row text-start">
               <div className="col-lg-12">
+                <h4 className="bg-white mb-3 text-secondary">Video</h4>
                 <input
-                  type="text"
+                  type="file"
                   id="video"
                   value={video}
                   onChange={(e) => setVideo(e.target.value)}
@@ -119,13 +119,14 @@ function AddRecipe() {
                 />
               </div>
             </div>
-          </div> */}
+          </div>
           <div className="mt-3 mb-5">
             <div className="row">
               <div className="col-lg-12">
-                <button
+                <Button
                   className="btn"
                   type="submit"
+                  size="lg"
                   style={{
                     backgroundColor: "#EFC81A",
                     color: "white",
@@ -135,7 +136,7 @@ function AddRecipe() {
                   }}
                 >
                   Post
-                </button>
+                </Button>
               </div>
             </div>
           </div>

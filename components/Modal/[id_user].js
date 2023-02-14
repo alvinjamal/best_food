@@ -7,25 +7,27 @@ import Form from "react-bootstrap/Form";
 import axios from "axios";
 import Swal from "sweetalert2";
 
-export const getServerSideProps = async (context) => {
-  const { token } = context.req.cookies;
-  console.log(token);
-  if (!token) {
-    return {
-      redirect: {
-        destination: "/Login",
-        permanent: true,
+export async function getServerSideProps(context) {
+  const id_user = req.params.id_user;
+  const cookie = context.req.headers.cookie;
+  console.log(cookie);
+  const res = await axios.put(
+    `http://localhost:3500/users/update-photo/${id_user}`,
+    {
+      withCredentials: true,
+      headers: {
+        Cookie: cookie,
       },
-    };
-  }
-
+    }
+  );
+  console.log("ini data", res.data);
   return {
     props: {
-      isLogin: true,
-      token: token,
+      data: res.data.data,
+      // login: token ? true : false,
     },
   };
-};
+}
 
 function ModalEdit({ token }) {
   const [show, setShow] = useState(false);

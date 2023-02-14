@@ -4,17 +4,17 @@ import Image from "next/image";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { Button } from "react-bootstrap";
+import Swal from "sweetalert2";
 
 const Layouts = ({ children, login }) => {
   const router = useRouter();
-
   const logout = async () => {
     try {
       const result = await fetch("/api/logout");
       const { logout } = await result.json();
       if (logout) {
-        Swal.fire("success", "Anda Berhasil Logout", "success");
-        router.push("/login");
+        Swal.fire("success", "Logout Success", "success");
+        router.push("/auth/Login");
       }
     } catch (err) {
       console.log(err);
@@ -59,8 +59,8 @@ const Layouts = ({ children, login }) => {
                 >
                   <Image
                     src="/user.png"
-                    height={20}
-                    width={20}
+                    height={33}
+                    width={33}
                     priority
                     alt=""
                   />
@@ -71,8 +71,8 @@ const Layouts = ({ children, login }) => {
                   <div className="btn" style={{ borderRadius: "30px" }}>
                     <Image
                       src="/user.png"
-                      height={20}
-                      width={20}
+                      height={33}
+                      width={33}
                       priority
                       alt=""
                     />

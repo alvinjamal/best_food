@@ -5,7 +5,7 @@
 
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
-import ModalEdit from "../../components/Modal/index";
+import ModalEdit from "../../components/Modal/[id_user]";
 import axios from "axios";
 import Layouts from "../../components/Layouts";
 import Footer from "../../components/Footer";
@@ -14,35 +14,38 @@ import Tabs from "react-bootstrap/Tabs";
 import { useRouter } from "next/router";
 import Swal from "sweetalert2";
 
-// export const getServerSideProps = async (context) => {
-//   const { token } = context.req.cookies;
-//   console.log(token);
-//   if (!token) {
-//     return {
-//       redirect: {
-//         destination: "/login",
-//         permanent: true,
-//       },
-//     };
-//   }
+export const getServerSideProps = async (context) => {
+  const { token } = context.req.cookies;
+  console.log(token);
+  if (!token) {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: true,
+      },
+    };
+  }
 
-//   return {
-//     props: {
-//       isLogin: true,
-//       token: token,
-//     },
-//   };
-// };
+  return {
+    props: {
+      isLogin: true,
+      token: token,
+    },
+  };
+};
 
 function profile({ token }) {
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const [data, setData] = useState(null);
+  const [data, setData] = useState("");
   const [key, setKey] = useState("myrecipe");
   const router = useRouter();
   useEffect(() => {
     axios
       .get(`http://localhost:3500/users`, {
-        headers: { Authorization: `Bearer ${token}` },
+        withCredentials: true,
+        headers: {
+          token: `${token}`,
+        },
       })
       .then((res) => {
         console.log("get data success");
@@ -57,11 +60,11 @@ function profile({ token }) {
   const [recipe, setRecipe] = useState(null);
   const [save, setSave] = useState(null);
   const [like, setLike] = useState(null);
-  const myrecipe = `http://localhost:3500/recipe/recipe-user`;
+  const myrecipe = `http://localhost:3500/recipe/recipe-user/`;
   useEffect(() => {
     axios
       .get(myrecipe, {
-        headers: { Authorization: `Bearer ${token}` },
+        withCredentials: true,
       })
       .then((res) => {
         console.log("get data success");
@@ -77,7 +80,7 @@ function profile({ token }) {
   useEffect(() => {
     axios
       .get(saved, {
-        headers: { Authorization: `Bearer ${token}` },
+        withCredentials: true,
       })
       .then((res) => {
         console.log("get data success");
@@ -93,7 +96,7 @@ function profile({ token }) {
   useEffect(() => {
     axios
       .get(liked, {
-        headers: { Authorization: `Bearer ${token}` },
+        withCredentials: true,
       })
       .then((res) => {
         console.log("get data success");
@@ -108,7 +111,7 @@ function profile({ token }) {
   const DeleteSave = (id_saved) => {
     axios
       .delete(`http://localhost:3500/recipe/saved-recipe/delete/${id_saved}`, {
-        headers: { Authorization: `Bearer ${token}` },
+        withCredentials: true,
       })
       .then((res) => {
         console.log("Delete save recipe success");
@@ -125,7 +128,7 @@ function profile({ token }) {
   const DeleteLike = (id_liked) => {
     axios
       .delete(`http://localhost:3500/recipe/like-recipe/delete/${id_liked}`, {
-        headers: { Authorization: `Bearer ${token}` },
+        withCredentials: true,
       })
       .then((res) => {
         console.log("Delete like recipe success");
@@ -142,7 +145,7 @@ function profile({ token }) {
   const DeleteRecipe = (id_recipe) => {
     axios
       .delete(`http://localhost:3500/recipe/delete-recipe/${id_recipe}`, {
-        headers: { Authorization: `Bearer ${token}` },
+        withCredentials: true,
       })
       .then((res) => {
         console.log("Delete recipe success");
@@ -164,8 +167,8 @@ function profile({ token }) {
           <div className="row justify-content-center mt-5">
             <div className="col-1">
               <img
-                src={"/food1.png"}
-                // src={data ? data[0].photo : "data not found"}
+                // src={"/alvin1.png"}
+                src={data ? data[0].photo : "data not found"}
                 style={{ width: "100px", height: "100px", borderRadius: "50%" }}
                 className="avatar-profile"
                 alt=""

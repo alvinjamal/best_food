@@ -1,5 +1,6 @@
 import axios from "axios";
 import Router from "next/router";
+import Swal from "sweetalert2";
 
 export const addRecipeData = (data) => async (dispatch) => {
   try {
@@ -9,6 +10,7 @@ export const addRecipeData = (data) => async (dispatch) => {
       `http://localhost:3500/recipe/add-recipe`,
       data,
       {
+        withCredentials: true,
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -16,10 +18,20 @@ export const addRecipeData = (data) => async (dispatch) => {
     );
     const recipe = result.data.data;
     dispatch({ type: "ADD_RECIPE_SUCCESS", payload: recipe });
-    Router.push("/Profile");
-    console.log("Add Recipe Success");
+    Swal.fire({
+      title: "Add Recipe Success",
+      text: "Success Add Recipe",
+      icon: "success",
+      timer: "3000",
+      showConfirmButton: false,
+    });
   } catch (err) {
-    console.log("Add Recipe Fail");
-    console.log(err);
+    Swal.fire({
+      title: "Add Recipe Failed",
+      text: "Error Add Recipe again Please Correct ",
+      icon: "error",
+      timer: "3000",
+      showConfirmButton: false,
+    });
   }
 };
