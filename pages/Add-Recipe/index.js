@@ -36,18 +36,27 @@ function AddRecipe() {
     setPhoto(e.target.files[0]);
     console.log(e.target.files[0]);
   };
+  const handleVideo = (e) => {
+    setVideo(e.target.files[0]);
+    console.log(e.target.files[0]);
+  };
 
   const dispatch = useDispatch();
 
   const postData = (e) => {
     e.preventDefault();
-    let data = {
-      title,
-      ingredients,
-      photo,
-      video,
-    };
-    dispatch(addRecipeData(data));
+    const formData = new FormData();
+    formData.append("photo", photo);
+    formData.append("title", title);
+    formData.append("ingredients", ingredients);
+    formData.append("video", video);
+    // let data = {
+    //   title,
+    //   ingredients,
+    //   photo,
+    //   video,
+    // };
+    dispatch(addRecipeData(formData));
   };
   return (
     <div className="container">
@@ -110,8 +119,8 @@ function AddRecipe() {
                 <input
                   type="file"
                   id="video"
-                  value={video}
-                  onChange={(e) => setVideo(e.target.value)}
+                  // value={video}
+                  onChange={handleVideo}
                   name="video"
                   placeholder=" Video "
                   className="form-control bg-light"
