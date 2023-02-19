@@ -1,3 +1,5 @@
+<h1 align="center">Food Recipe</h1>
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
@@ -32,3 +34,37 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## Screenshots
+
+| Register Page                                                                                                      | Verification Page                                                                                                              |
+| ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ |
+| ![Register](https://github.com/alvinjamal/food-recipe/blob/main/Image-Project/Register%20Page.PNG "Register Page") | ![Verification](https://github.com/alvinjamal/food-recipe/blob/main/Image-Project/Verification%20Page.PNG "Verification Page") |
+
+<hr />
+
+| Forgot Password Page                                                                                       | Change Password Page                                                                                                               |
+| ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| ![Forgot](https://github.com/alvinjamal/food-recipe/blob/main/Image-Project/Forgot-Page.PNG "Forgot Page") | ![Change Password](https://github.com/alvinjamal/food-recipe/blob/main/Image-Project/Change%20Password.PNG "Change Password Page") |
+
+<hr />
+
+| Login                                                                                                | Landing Page                                                                                                         |
+| ---------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| ![Login](https://github.com/alvinjamal/food-recipe/blob/main/Image-Project/Login%20Page.PNG "Login") | ![Landing Page](https://github.com/alvinjamal/food-recipe/blob/main/Image-Project/Landing%20Page.PNG "Landing Page") |
+
+<hr />
+
+| Detail Recipe                                                                                                           | Detail Video                                                                                                         |
+| ----------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| ![Detail Recipe](https://github.com/alvinjamal/food-recipe/blob/main/Image-Project/Detail%20Recipe.PNG "Detail Recipe") | ![Detail Video](https://github.com/alvinjamal/food-recipe/blob/main/Image-Project/Detail%20Video.PNG "Detail Video") |
+
+<hr />
+
+| Profile                                                                                                    | Add Recipe                                                                                                            |
+| ---------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| ![Profile](https://github.com/alvinjamal/food-recipe/blob/main/Image-Project/Profile%20Page.PNG "Profile") | ![Add Recipe](https://github.com/alvinjamal/food-recipe/blob/main/Image-Project/Add%20Recipe%20Pgae.PNG "Add Recipe") |
+
+### References Backend Recipe
+
+be-recipe : https://github.com/alvinjamal/be-recipe
