@@ -20,7 +20,7 @@ export async function getServerSideProps(context) {
   const id_recipe = context.params.id_recipe;
   const cookie = context.req.headers.cookie;
   const res = await axios.get(
-    `http://localhost:3500/recipe/detail/${id_recipe}`,
+    `${process.env.URL_BASE}/recipe/detail/${id_recipe}`,
     {
       withCredentials: true,
       headers: {
@@ -50,7 +50,7 @@ function DetailRecipe({ data, id_recipe, token }) {
 
   // useEffect(() => {
   //   axios
-  //     .get(`http://localhost:3500/recipe/comment/${id_recipe}`)
+  //     .get(`${process.env.URL_BASE}/recipe/comment/${id_recipe}`)
   //     .then((res) => {
   //       console.log("Get comment recipe success");
   //       console.log(res.data);

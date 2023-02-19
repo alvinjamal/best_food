@@ -6,7 +6,6 @@ const Code = () => {
   return (
     <Row>
       <Col>
-        {" "}
         <div
           style={{
             backgroundImage: `url(/col.png)`,
@@ -19,7 +18,6 @@ const Code = () => {
         />
       </Col>
       <Col>
-        {" "}
         <div className="row">
           <div className="text align-items-center">
             <div className="input ">

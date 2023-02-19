@@ -5,7 +5,7 @@ export const RegisterUser = (data, router) => async (dispatch) => {
   try {
     dispatch({ type: "USER_Register_PENDING" });
     const result = await axios.post(
-      "http://localhost:3500/users/register",
+      `${process.env.URL_BASE}/users/register`,
       data
     );
     const user = result.data.data;

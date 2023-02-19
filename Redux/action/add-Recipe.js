@@ -7,7 +7,7 @@ export const addRecipeData = (data) => async (dispatch) => {
     dispatch({ type: "ADD_RECIPE_PENDING" });
     console.log(data);
     const result = await axios.post(
-      `http://localhost:3500/recipe/add-recipe`,
+      `${process.env.URL_BASE}/recipe/add-recipe`,
       data,
       {
         withCredentials: true,

@@ -5,7 +5,7 @@ export const detailProfile = (token) => async (dispatch) => {
   return new Promise((resolve, reject) => {
     axios({
       method: "GET",
-      baseURL: "http://localhost:3500/",
+      baseURL: `${process.env.URL_BASE}/`,
       url: `users/profile`,
       //   data: id,
       headers: {
@@ -26,7 +26,7 @@ export const detailProfile = (token) => async (dispatch) => {
 export const editProfile = (id, formData, token) => async (dispatch) => {
   try {
     const result = await axios.put(
-      `http://localhost:3500/users/profile`,
+      `${process.env.URL_BASE}/users/profile`,
       formData,
       {
         "content-type": "multipart/form-data",

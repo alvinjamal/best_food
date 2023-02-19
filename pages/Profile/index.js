@@ -35,13 +35,12 @@ export const getServerSideProps = async (context) => {
 };
 
 function profile({ token }) {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   const [data, setData] = useState("");
   const [key, setKey] = useState("myrecipe");
   const router = useRouter();
   useEffect(() => {
     axios
-      .get(`http://localhost:3500/users`, {
+      .get(`${process.env.URL_BASE}/users`, {
         withCredentials: true,
         headers: {
           token: `${token}`,
@@ -60,7 +59,7 @@ function profile({ token }) {
   const [recipe, setRecipe] = useState(null);
   const [save, setSave] = useState(null);
   const [like, setLike] = useState(null);
-  const myrecipe = `http://localhost:3500/recipe/recipe-user/`;
+  const myrecipe = `${process.env.URL_BASE}/recipe/recipe-user`;
   useEffect(() => {
     axios
       .get(myrecipe, {
@@ -76,7 +75,7 @@ function profile({ token }) {
         console.log(err);
       });
   }, []);
-  const saved = `http://localhost:3500/recipe/saved-recipe`;
+  const saved = `${process.env.URL_BASE}/recipe/saved-recipe`;
   useEffect(() => {
     axios
       .get(saved, {
@@ -92,7 +91,7 @@ function profile({ token }) {
         console.log(err);
       });
   }, []);
-  const liked = `http://localhost:3500/recipe/like-recipe`;
+  const liked = `${process.env.URL_BASE}/recipe/like-recipe`;
   useEffect(() => {
     axios
       .get(liked, {
@@ -110,9 +109,12 @@ function profile({ token }) {
   }, []);
   const DeleteSave = (id_saved) => {
     axios
-      .delete(`http://localhost:3500/recipe/saved-recipe/delete/${id_saved}`, {
-        withCredentials: true,
-      })
+      .delete(
+        `${process.env.URL_BASE}/recipe/saved-recipe/delete/${id_saved}`,
+        {
+          withCredentials: true,
+        }
+      )
       .then((res) => {
         console.log("Delete save recipe success");
         console.log(res);
@@ -127,7 +129,7 @@ function profile({ token }) {
   };
   const DeleteLike = (id_liked) => {
     axios
-      .delete(`http://localhost:3500/recipe/like-recipe/delete/${id_liked}`, {
+      .delete(`${process.env.URL_BASE}/recipe/like-recipe/delete/${id_liked}`, {
         withCredentials: true,
       })
       .then((res) => {
@@ -144,7 +146,7 @@ function profile({ token }) {
   };
   const DeleteRecipe = (id_recipe) => {
     axios
-      .delete(`http://localhost:3500/recipe/delete-recipe/${id_recipe}`, {
+      .delete(`${process.env.URL_BASE}/recipe/delete-recipe/${id_recipe}`, {
         withCredentials: true,
       })
       .then((res) => {

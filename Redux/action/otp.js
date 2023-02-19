@@ -5,7 +5,7 @@ export const VerifOtpUser = (data, router) => async (dispatch) => {
   try {
     dispatch({ type: "USER_OTP_PENDING" });
     const result = await axios.post(
-      "http://localhost:3500/users/verification",
+      `${process.env.URL_BASE}/users/verification`,
       data
     );
     const otp = result.data;
