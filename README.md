@@ -35,6 +35,26 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
+## Built With
+
+This app was built with some technologies below:
+
+- [React Js](https://reactjs.org)
+- [Axios](https://www.npmjs.com/package/axios)
+- [Bootstrap](https://www.npmjs.com/package/bootstrap)
+- [React-bootstrap](https://www.npmjs.com/package/react-bootstrap)
+- [Cookies-Next](https://www.npmjs.com/package/cookies-next)
+- [Eslint](https://www.npmjs.com/package/eslint)
+- [Eslint-Config-next](https://www.npmjs.com/package/eslint-config-next)
+- [React-redux](https://www.npmjs.com/package/react-redux)
+- [Redux-logger](https://www.npmjs.com/package/redux-logger)
+- [Sweetalert2](https://www.npmjs.com/package/sweetalert2)
+- [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS?retiredLocale=id)
+- [Javascript](https://www.javascript.com/)
+- [react-router-dom](https://www.npmjs.com/package/react-router-dom)
+- [Redux](https://www.npmjs.com/package/redux)
+- [Redux-thunk](https://www.npmjs.com/search?q=redux-thunk)
+
 ## Screenshots
 
 | Register Page                                                                                                      | Verification Page                                                                                                              |
