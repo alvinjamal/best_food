@@ -24,7 +24,7 @@ export async function getServerSideProps(context) {
       Cookie: cookie,
     },
   });
-  console.log("ini data", res.data);
+  // console.log("ini data", res.data);
   return {
     props: {
       data: res.data.data,
