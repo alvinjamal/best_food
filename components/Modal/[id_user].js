@@ -11,15 +11,12 @@ export async function getServerSideProps(context) {
   const id_user = req.params.id_user;
   const cookie = context.req.headers.cookie;
   console.log(cookie);
-  const res = await axios.put(
-    `http://localhost:3500/users/update-photo/${id_user}`,
-    {
-      withCredentials: true,
-      headers: {
-        Cookie: cookie,
-      },
-    }
-  );
+  const res = await axios.put(`http://localhost:3500/users/update/${id_user}`, {
+    withCredentials: true,
+    headers: {
+      Cookie: cookie,
+    },
+  });
   console.log("ini data", res.data);
   return {
     props: {
@@ -51,12 +48,19 @@ function ModalEdit({ token }) {
       },
     };
     await axios
-      .put("http://localhost:3000/users/update-photo", data, user)
+      .put("http://localhost:3000/users/update", data, user)
       .then((res) => {
         console.log("Update profile succes");
         console.log(res);
-        window.location.reload(false);
-        Swal.fire("Success", "Update profile success", "success");
+        Swal.fire({
+          title: "Update Success",
+          text: "Update profile success",
+          icon: "success",
+          timer: "3000",
+          showConfirmButton: false,
+        }).then(() => {
+          window.location.reload(false);
+        });
       })
       .catch((err) => {
         console.log("Update data profile failed");

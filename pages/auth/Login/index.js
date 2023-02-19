@@ -83,10 +83,10 @@ function Login() {
           <div
             style={{
               backgroundImage: `url(/col.png)`,
-              height: "800px",
-              width: "800px",
+              height: "700px",
+              width: "700px",
               opacity: 0.2,
-              marginLeft: "10rem",
+              marginLeft: "8rem",
               marginTop: "2rem",
             }}
           />
@@ -112,8 +112,8 @@ function Login() {
               </h5>
             </div>
             <div className="input ">
-              <Form onSubmit={postData} className="container mb-3 col-5 mt-3 ">
-                <h5>E-mail</h5>
+              <Form onSubmit={postData} className="container mb-3 col-7 mt-3 ">
+                <h5 className="text-secondary">E-mail</h5>
                 <input
                   type="email"
                   className="form-control mb-2"
@@ -123,7 +123,7 @@ function Login() {
                   placeholder="Email"
                   style={{ width: "25rem", height: "40px" }}
                 />
-                <h5>Password</h5>
+                <h5 className="text-secondary">Password</h5>
                 <input
                   type="password"
                   className="form-control mb-2"
@@ -146,13 +146,16 @@ function Login() {
                 </Button>
               </Form>
               <Link href={"/auth/Forgot-Pass"}>
-                <h5 style={{ marginTop: "5rem" }} className="text-center mb-4">
+                <h5
+                  style={{ marginTop: "5rem" }}
+                  className="text-end text-warning col-9 mb-4"
+                >
                   Forgot Password ?
                 </h5>
               </Link>
               <h5 className=" text-center text-dark mt-1">
                 Dont have an account?
-                <Link href={"/auth/Register"} className="text-yellow">
+                <Link href={"/auth/Register"} className="text-warning">
                   Sign Up
                 </Link>
               </h5>

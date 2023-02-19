@@ -29,8 +29,8 @@ const VerifOtp = () => {
           <div
             style={{
               backgroundImage: `url(/col.png)`,
-              height: "800px",
-              width: "800px",
+              height: "700px",
+              width: "700px",
               opacity: 0.2,
               marginLeft: "10rem",
               marginTop: "2rem",

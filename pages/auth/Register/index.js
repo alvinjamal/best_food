@@ -35,8 +35,8 @@ const Register = () => {
         <div
           style={{
             backgroundImage: `url(/col.png)`,
-            height: "50rem",
-            width: "45rem",
+            height: "700px",
+            width: "700px",
             opacity: 0.2,
             marginLeft: "8rem",
             marginTop: "2rem",
