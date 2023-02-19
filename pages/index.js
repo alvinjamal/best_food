@@ -28,7 +28,7 @@ export async function getServerSideProps(context) {
   return {
     props: {
       data: res.data.data,
-      // login: token ? true : false,
+      login: cookie ? true : false,
     },
   };
 }
