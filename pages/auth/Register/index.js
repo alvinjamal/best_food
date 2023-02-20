@@ -1,13 +1,10 @@
-import Image from "next/image";
-import { global } from "styled-jsx/css";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
 import { RegisterUser } from "../../../Redux/action/register";
-import { Col, Row, Form, Button } from "react-bootstrap";
-import Swal from "sweetalert2";
+import { Link, Form, Button } from "react-bootstrap";
 
-const Register = () => {
+function Register() {
   const [fullname, setFullname] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
@@ -26,7 +23,6 @@ const Register = () => {
       password,
     };
     dispatch(RegisterUser(data, router));
-    Swal.fire("Success", "Register Success,Returning to Login", "success");
   };
   return (
     <div className="container row align-items-center">
@@ -109,24 +105,21 @@ const Register = () => {
               Register Account
             </Button>
             <div
-              className=" justify-content-center text-dark mt-1"
+              className=" justify-content-center col-11 text-dark mt-1"
               style={{ marginLeft: "5px" }}
             >
-              Already have account?{" "}
-              <Button
-                href={"/Login"}
-                className="text-dark"
-                variant="outline-warning"
-                style={{}}
-              >
-                Log In Here
-              </Button>
+              Already have account?
+              <Link to={"/auth/Login"}>
+                <Button className="text-dark" variant="outline-warning">
+                  Log In
+                </Button>
+              </Link>
             </div>
           </Form>
         </div>
       </div>
     </div>
   );
-};
+}
 
 export default Register;
