@@ -1,6 +1,4 @@
-import Image from "next/image";
-import { global } from "styled-jsx/css";
-import { Col, Row, Form, Button } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
@@ -47,7 +45,7 @@ const VerifOtp = () => {
             >
               Verification Otp
             </div>
-            <h5>E-mail</h5>
+            <h5 className="text-secondary">E-mail</h5>
             <input
               type="email"
               className="form-control mb-2"
@@ -57,7 +55,7 @@ const VerifOtp = () => {
               placeholder="Email"
               style={{ width: "25rem", height: "40px" }}
             />
-            <h5>Verification</h5>
+            <h5 className="text-secondary">Verification</h5>
             <input
               type="code"
               className="form-control mb-2"

@@ -1,6 +1,4 @@
-import Image from "next/image";
-import { global } from "styled-jsx/css";
-import { Col, Row, Button } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 
 const Code = () => {
   return (
@@ -29,6 +27,7 @@ const Code = () => {
             >
               Change Password
             </div>
+            <h5 className="text-secondary">New Password</h5>
             <input
               type="text"
               className="form-control mb-2"

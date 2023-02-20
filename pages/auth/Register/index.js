@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
 import { RegisterUser } from "../../../Redux/action/register";
-import { Link, Form, Button } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
+import Link from "next/link";
 
 function Register() {
   const [fullname, setFullname] = useState("");
@@ -40,8 +41,9 @@ function Register() {
       <div className="col-lg-4 offset-lg-1 col-sm-10 mt-sm-4">
         <div className="flex-end">
           <div
-            className="text-end mt-3 text-warning"
+            className="text-center mt-3 text-warning"
             style={{
+              marginLeft: "5rem",
               fontWeight: "bold",
               fontSize: 30,
             }}
@@ -50,14 +52,14 @@ function Register() {
           </div>
           <h5
             className="text-secondary col-12 text-end mt-2"
-            style={{ marginLeft: "4rem" }}
+            style={{ marginLeft: "2rem" }}
           >
             Create new account to access all features
           </h5>
         </div>
         <div className="input ">
-          <Form onSubmit={postData} className="container mb-3 col-5 mt-4 ">
-            <h5>Full Name</h5>
+          <Form onSubmit={postData} className="container mb-3 col-9 mt-4 ">
+            <h5 className="text-secondary">Full Name</h5>
             <input
               type="name"
               className="form-control mb-2"
@@ -67,7 +69,7 @@ function Register() {
               placeholder="Full Name"
               style={{ width: "25rem", height: "50px" }}
             />
-            <h5>E-mail</h5>
+            <h5 className="text-secondary">E-mail</h5>
             <input
               type="email"
               className="form-control mb-2"
@@ -77,7 +79,7 @@ function Register() {
               placeholder="Email"
               style={{ width: "25rem", height: "50px" }}
             />
-            <h5>Phone Number</h5>
+            <h5 className="text-secondary">Phone Number</h5>
             <input
               type="text"
               className="form-control mb-2"
@@ -87,7 +89,7 @@ function Register() {
               placeholder="Number"
               style={{ width: "25rem", height: "50px" }}
             />
-            <h5>Password</h5>
+            <h5 className="text-secondary">Password</h5>
             <input
               type="password"
               className="form-control mb-2"
@@ -104,17 +106,15 @@ function Register() {
             >
               Register Account
             </Button>
-            <div
-              className=" justify-content-center col-11 text-dark mt-1"
-              style={{ marginLeft: "5px" }}
+            <h5
+              className="col-12 text-dark mt-3"
+              style={{ marginLeft: "5rem" }}
             >
               Already have account?
-              <Link to={"/auth/Login"}>
-                <Button className="text-dark" variant="outline-warning">
-                  Log In
-                </Button>
+              <Link href="/auth/Login" className="text-warning">
+                Login
               </Link>
-            </div>
+            </h5>
           </Form>
         </div>
       </div>

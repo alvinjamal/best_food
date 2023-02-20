@@ -1,11 +1,8 @@
 import React, { useState } from "react";
 import { Button, Row, Col, Form } from "react-bootstrap";
-import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
-import axios from "axios";
-import Swal from "sweetalert2";
 import { LoginUser } from "../../../Redux/action/login";
 
 /* eslint-disable react-hooks/rules-of-hooks */
@@ -131,7 +128,7 @@ function Login() {
               Login
             </Button>
           </Form>
-          <Link to={"/auth/Forgot-Pass"}>
+          <Link href="/auth/Forgot-Pass">
             <h5
               style={{ marginTop: "5rem", marginLeft: "4rem" }}
               className="col-12 text-end text-warning col-8 mb-3"
@@ -144,7 +141,7 @@ function Login() {
             style={{ marginLeft: "2rem" }}
           >
             Dont have an account?
-            <Link to={"/auth/Register"} className="text-warning">
+            <Link href="/auth/Register" className="text-warning">
               Sign Up
             </Link>
           </h5>

@@ -1,6 +1,4 @@
-import Image from "next/image";
-import { global } from "styled-jsx/css";
-import { Col, Row, Button } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 
 const Forgot = () => {
   return (
@@ -38,7 +36,7 @@ const Forgot = () => {
         </div>
         <div className="input ">
           <form className="container mb-3 col-8 mt-4 ">
-            <h5>E-mail</h5>
+            <h5 className="text-secondary">E-mail</h5>
             <input
               type="email"
               className="form-control mb-2"
