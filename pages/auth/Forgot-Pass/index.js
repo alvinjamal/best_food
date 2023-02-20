@@ -6,20 +6,17 @@ const Forgot = () => {
   return (
     <Row>
       <Col>
-        {" "}
         <div
           style={{
             backgroundImage: `url(/col.png)`,
-            height: "700px",
-            width: "700px",
+            height: "38rem",
+            width: "41rem",
             opacity: 0.2,
-            marginLeft: "10rem",
             marginTop: "2rem",
           }}
         />
       </Col>
       <Col>
-        {" "}
         <div className="row">
           <div className="text align-items-center">
             <div className="flex-end">
