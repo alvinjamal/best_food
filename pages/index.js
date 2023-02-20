@@ -17,18 +17,18 @@ import { Button } from "react-bootstrap";
 
 export async function getServerSideProps(context) {
   const cookie = context.req.headers.cookie;
-  // console.log(cookie);
-  const res = await axios.get(`${process.env.URL_BASE}/recipe`, {
+  console.log(cookie);
+  const res = await axios.get("http://localhost:3500/recipe", {
     withCredentials: true,
     headers: {
       Cookie: cookie,
     },
   });
-  // console.log("ini data", res.data);
+  console.log("ini data", res.data);
   return {
     props: {
       data: res.data.data,
-      login: cookie ? true : false,
+      // login: token ? true : false,
     },
   };
 }

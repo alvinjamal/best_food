@@ -4,13 +4,9 @@ import Swal from "sweetalert2";
 export const LoginUser = (data, router) => async (dispatch) => {
   try {
     dispatch({ type: "USER_LOGIN_PENDING" });
-    const result = await axios.post(
-      `${process.env.URL_BASE}/users/login`,
-      data,
-      {
-        withCredentials: true,
-      }
-    );
+    const result = await axios.post(`http://localhost:3500/users/login`, data, {
+      withCredentials: true,
+    });
     const user = result.data.data;
     // localStorage.setItem("token", user.token);
     dispatch({ type: "USER_LOGIN_SUCCESS", payload: user });
@@ -27,7 +23,7 @@ export const LoginUser = (data, router) => async (dispatch) => {
   } catch (err) {
     Swal.fire({
       title: "Please Try Again Login",
-      text: `${err.response.data.message}`,
+      text: "Login failed",
       icon: "error",
       timer: "3000",
       showConfirmButton: false,
