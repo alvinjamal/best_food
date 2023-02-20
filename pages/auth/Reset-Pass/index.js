@@ -4,54 +4,50 @@ import { Col, Row, Button } from "react-bootstrap";
 
 const Code = () => {
   return (
-    <Row>
-      <Col>
+    <div className="container row align-items-center">
+      <div className="col-lg-6 col-sm-8">
         <div
           style={{
             backgroundImage: `url(/col.png)`,
-            height: "38rem",
+            height: "40rem",
             width: "41rem",
             opacity: 0.2,
             marginTop: "2rem",
           }}
         />
-      </Col>
-      <Col>
-        <div className="row">
-          <div className="text align-items-center">
-            <div className="input ">
-              <form className="container mb-3 col-8 mt-5 ">
-                <div
-                  className="Forgot text-start mt-3 mb-3 text-warning"
-                  style={{
-                    marginLeft: "10%",
-                    fontWeight: "bold",
-                    fontSize: 30,
-                  }}
-                >
-                  Change Password
-                </div>
-                <input
-                  type="text"
-                  className="form-control mb-2"
-                  name="Code 6 Digit"
-                  placeholder="New Password"
-                  style={{ width: "25rem", height: "40px" }}
-                />
-                <Button
-                  href={"/Login"}
-                  type="submit"
-                  className="btn btn-warning mt-3"
-                  style={{ width: "25rem" }}
-                >
-                  Change Password
-                </Button>
-              </form>
+      </div>
+      <div className="col-lg-4 offset-lg-1 col-sm-10 mt-sm-4">
+        <div className="input ">
+          <form className="container mb-3 col-9">
+            <div
+              className="Forgot text-start mb-3 text-warning"
+              style={{
+                marginLeft: "10%",
+                fontWeight: "bold",
+                fontSize: 30,
+              }}
+            >
+              Change Password
             </div>
-          </div>
+            <input
+              type="text"
+              className="form-control mb-2"
+              name="Code 6 Digit"
+              placeholder="New Password"
+              style={{ width: "25rem", height: "40px" }}
+            />
+            <Button
+              href={"/Login"}
+              type="submit"
+              className="btn btn-warning mt-3"
+              style={{ width: "25rem" }}
+            >
+              Change Password
+            </Button>
+          </form>
         </div>
-      </Col>
-    </Row>
+      </div>
+    </div>
   );
 };
 

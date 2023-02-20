@@ -83,7 +83,7 @@ function Login() {
           <div
             style={{
               backgroundImage: `url(/col.png)`,
-              height: "38rem",
+              height: "40rem",
               width: "41rem",
               opacity: 0.2,
               marginTop: "2rem",
@@ -91,10 +91,12 @@ function Login() {
           />
         </div>
         <div className="col-lg-4 offset-lg-1 col-sm-10 mt-sm-4">
-          <h3 className="text-warning text-end" style={{ marginRight: "4rem" }}>
+          <h2 className="text-warning text-end" style={{ marginRight: "5rem" }}>
             Welcome
-          </h3>
-          <h6 className="text-end">Log in into your exiting account</h6>
+          </h2>
+          <h4 className="text-end col-11 mb-3" style={{ marginLeft: "4rem" }}>
+            Log in into your exiting account
+          </h4>
           <Form onSubmit={postData} className="container mb-3 col-8 mt-3 ">
             <h5 className="text-secondary">E-mail</h5>
             <input
@@ -130,7 +132,7 @@ function Login() {
           </Form>
           <Link href={"/auth/Forgot-Pass"}>
             <h5
-              style={{ marginTop: "5rem" }}
+              style={{ marginTop: "5rem", marginLeft: "4rem" }}
               className="col-12 text-end text-warning col-8 mb-3"
             >
               Forgot Password ?
@@ -138,7 +140,7 @@ function Login() {
           </Link>
           <h5
             className="col-12 text-end text-dark mt-1"
-            style={{ marginLeft: "3rem" }}
+            style={{ marginLeft: "2rem" }}
           >
             Dont have an account?
             <Link href={"/auth/Register"} className="text-warning">
