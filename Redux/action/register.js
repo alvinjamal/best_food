@@ -9,7 +9,7 @@ export const RegisterUser = (data, router) => async (dispatch) => {
       data
     );
     const user = result.data.data;
-    // localStorage.setItem("token", user.token);
+    localStorage.setItem("token", user.token);
     dispatch({ type: "USER_REGISTER_SUCCESS", payload: user });
     Swal.fire({
       title: "Good job!",
