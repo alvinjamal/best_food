@@ -15,7 +15,7 @@ export const RegisterUser = (data, router) => async (dispatch) => {
       title: "Good job!",
       text: `${result.data.message}`,
       icon: "success",
-      timer: "3000",
+      timer: "2000",
       showConfirmButton: false,
     }).then(() => {
       router.push("/auth/Verif-Otp");
@@ -26,7 +26,7 @@ export const RegisterUser = (data, router) => async (dispatch) => {
       title: "Please Try Again Register",
       text: `${err.response.data.message}`,
       icon: "error",
-      timer: "3000",
+      timer: "2000",
       showConfirmButton: false,
     });
   }
