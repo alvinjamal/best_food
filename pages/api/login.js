@@ -1,7 +1,6 @@
 export default function login(req, res) {
   console.log(req.method);
   if (req.method == "POST") {
-    console.log("Add token to cookie");
     const token = req.body.token;
     res.setHeader(
       "Set-Cookie",

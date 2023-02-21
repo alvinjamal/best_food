@@ -18,8 +18,8 @@ export const LoginUser = (data, router) => async (dispatch) => {
       title: "Good job!",
       text: `${result.data.message}`,
       icon: "success",
-      timer: "2000",
-      showConfirmButton: false,
+      // timer: "2000",
+      // showConfirmButton: false,
     }).then(() => {
       router.push("/");
     });
@@ -29,8 +29,8 @@ export const LoginUser = (data, router) => async (dispatch) => {
       title: "Please Try Again Login",
       text: "Login failed",
       icon: "error",
-      timer: "2000",
-      showConfirmButton: false,
+      // timer: "2000",
+      // showConfirmButton: false,
     });
   }
 };
