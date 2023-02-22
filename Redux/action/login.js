@@ -9,16 +9,9 @@ export const LoginUser = (data, router) => async (dispatch) => {
       data,
       {
         withCredentials: true,
-        body: JSON.stringify(dataToken),
       }
     );
-    const token = result.data.message.token;
-    const id_user = result.data.message.id_user;
     const user = result.data.data;
-    const dataToken = {
-      token: token,
-      id_user: id_user,
-    };
     // localStorage.setItem("token", user.token);
     dispatch({ type: "USER_LOGIN_SUCCESS", payload: user });
     Swal.fire({
