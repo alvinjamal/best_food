@@ -7,7 +7,6 @@ import Footer from "../components/Footer";
 import Link from "next/link";
 import Layouts from "../components/Layouts";
 import styles from "../styles/Home.module.css";
-import cookie from "js-cookie";
 import { Button } from "react-bootstrap";
 
 /* eslint-disable react-hooks/exhaustive-deps */
@@ -23,11 +22,10 @@ export async function getServerSideProps(context) {
       Cookie: cookie,
     },
   });
-  console.log("ini data", res.data);
   return {
     props: {
       data: res.data.data,
-      // login: token ? true : false,
+      login: cookie ? true : false,
     },
   };
 }
@@ -39,7 +37,6 @@ const LandingPage = ({ data, login }) => {
   return (
     <div className="container">
       <Layouts Login={login} />
-
       <div
         className="row align-items-center bg-white"
         style={{ marginTop: "80px" }}
