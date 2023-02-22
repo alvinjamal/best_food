@@ -1,5 +1,6 @@
 import axios from "axios";
 import Swal from "sweetalert2";
+import Cookies from "js-cookie";
 
 export const LoginUser = (data, router) => async (dispatch) => {
   try {
@@ -12,6 +13,7 @@ export const LoginUser = (data, router) => async (dispatch) => {
       }
     );
     const user = result.data.data;
+    Cookies.setItmen("token", user.token);
     // localStorage.setItem("token", user.token);
     dispatch({ type: "USER_LOGIN_SUCCESS", payload: user });
     Swal.fire({

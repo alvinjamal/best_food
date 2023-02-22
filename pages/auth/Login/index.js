@@ -72,19 +72,6 @@ function Login() {
       email,
       password,
     };
-    // const dataToken = {
-    //   cookie: cookie,
-    //   id_user: id_user,
-    // };
-    // const cookie = await fetch("/api/login", {
-    //   method: "POST",
-    //   headers: {
-    //     Accept: "application/json",
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(dataToken),
-    // });
-    // const checkToken = await cookie.json();
     dispatch(LoginUser(data, router));
   };
   return (
