@@ -3,6 +3,7 @@ import { Button, Row, Col, Form } from "react-bootstrap";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
+import Swal from "sweetalert2";
 import { LoginUser } from "../../../Redux/action/login";
 
 /* eslint-disable react-hooks/rules-of-hooks */
@@ -60,33 +61,77 @@ import { LoginUser } from "../../../Redux/action/login";
 // };
 
 function Login() {
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
+
+  // const dispatch = useDispatch();
+  // const router = useRouter();
+
+  // const postData = async (e) => {
+  //   e.preventDefault();
+  //   let data = {
+  //     email,
+  //     password,
+  //   };
+  // const dataToken = {
+  //   cookie: cookie,
+  //   id_user: id_user,
+  // };
+  // const cookie = await fetch("/api/login", {
+  //   method: "POST",
+  //   headers: {
+  //     Accept: "application/json",
+  //     "Content-Type": "application/json",
+  //   },
+  //   body: JSON.stringify(dataToken),
+  // });
+  // const checkToken = await cookie.json();
+  //   dispatch(LoginUser(data, router));
+  // };
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const dispatch = useDispatch();
   const router = useRouter();
-
   const postData = async (e) => {
     e.preventDefault();
+    console.log(email);
+    console.log(password);
     let data = {
       email,
       password,
     };
-    // const dataToken = {
-    //   cookie: cookie,
-    //   id_user: id_user,
-    // };
-    // const cookie = await fetch("/api/login", {
-    //   method: "POST",
-    //   headers: {
-    //     Accept: "application/json",
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(dataToken),
-    // });
-    // const checkToken = await cookie.json();
-    dispatch(LoginUser(data, router));
+    const config = {
+      withCredentials: true,
+    };
+    const result = await axios.post(
+      `${process.env.URL_BASE}/users/login`,
+      data,
+      config
+    );
+    const token = result.data.message.token;
+    const id_user = result.data.message.id_user;
+    const dataPost = {
+      token: token,
+      id_user: id_user,
+    };
+    const cookie = await fetch("/api/login", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(dataPost),
+    });
+    const checkToken = await cookie.json();
+    if (!checkToken) {
+      return Swal.fire("Warning", "Login Failed", "error");
+    }
+    Swal.fire("Success", "Login Success", "success");
+    console.log(dataToken);
+    router.push("/");
   };
+
   return (
     <div>
       <div className="container row align-items-center">
