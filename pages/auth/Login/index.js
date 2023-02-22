@@ -100,13 +100,12 @@ function Login() {
       email,
       password,
     };
-    const config = {
-      withCredentials: true,
-    };
     const result = await axios.post(
       `${process.env.URL_BASE}/users/login`,
       data,
-      config
+      {
+        withCredentials: true,
+      }
     );
     const token = result.data.message.token;
     const id_user = result.data.message.id_user;
