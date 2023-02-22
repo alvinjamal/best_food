@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button, Row, Col, Form } from "react-bootstrap";
 import Link from "next/link";
+import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
 import Swal from "sweetalert2";
@@ -95,8 +96,6 @@ function Login() {
   const router = useRouter();
   const postData = async (e) => {
     e.preventDefault();
-    console.log(email);
-    console.log(password);
     let data = {
       email,
       password,
