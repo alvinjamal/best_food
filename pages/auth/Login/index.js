@@ -126,9 +126,15 @@ function Login() {
     if (!checkToken) {
       return Swal.fire("Warning", "Login Failed", "error");
     }
-    Swal.fire("Success", "Login Success", "success");
-    console.log(dataToken);
-    router.push("/");
+    Swal.fire({
+      title: "Good job!",
+      text: `${result.data.message}`,
+      icon: "success",
+      // timer: "2000",
+      // showConfirmButton: false,
+    }).then(() => {
+      router.push("/");
+    });
   };
 
   return (
