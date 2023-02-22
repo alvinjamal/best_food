@@ -13,8 +13,15 @@ const Layouts = ({ children, login }) => {
       const result = await fetch("/api/logout");
       const { logout } = await result.json();
       if (logout) {
-        Swal.fire("success", "Logout Success", "success");
-        router.push("/auth/Login");
+        Swal.fire({
+          title: "Don't Forget to Log in Again!",
+          text: `Logout Success`,
+          icon: "success",
+          timer: "2000",
+          showConfirmButton: false,
+        }).then(() => {
+          router.push("/");
+        });
       }
     } catch (err) {
       console.log(err);
