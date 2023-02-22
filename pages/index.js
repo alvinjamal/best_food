@@ -74,7 +74,7 @@ const LandingPage = ({ data, login }) => {
           className="col-6"
           style={{ marginTop: "90px", marginBottom: "100px" }}
         >
-          <Image src="/food2.png" height={500} width={500} priority alt="" />
+          <Image src="/food3.png" height={500} width={500} priority alt="" />
         </div>
         <div className="col-4 offset-1">
           <h1>Healthy Bone Broth Ramen (Quick & Easy)</h1>
@@ -116,7 +116,7 @@ const LandingPage = ({ data, login }) => {
             className="col-6"
             style={{ marginTop: "90px", marginBottom: "100px" }}
           >
-            <Image src="/food3.png" height={500} width={500} alt="" />
+            <Image src="/food2.png" height={500} width={500} alt="" />
           </div>
           <div className="col-4 offset-1">
             <h1>Healthy Bone Broth Ramen (Quick & Easy)</h1>
