@@ -20,7 +20,7 @@ const Layouts = ({ children, login }) => {
           timer: "2000",
           showConfirmButton: false,
         }).then(() => {
-          router.push("/");
+          router.push("/auth/Login");
         });
       }
     } catch (err) {
