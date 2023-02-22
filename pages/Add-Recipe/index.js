@@ -12,7 +12,7 @@ export const getServerSideProps = async (context) => {
   if (!token) {
     return {
       redirect: {
-        destination: "/Login",
+        destination: "/auth/Login",
         permanent: true,
       },
     };
