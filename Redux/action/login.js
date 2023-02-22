@@ -16,18 +16,9 @@ export const LoginUser = (data, router) => async (dispatch) => {
     const id_user = result.data.message.id_user;
     const user = result.data.data;
     const dataToken = {
-      user: user,
       token: token,
       id_user: id_user,
     };
-    const cookie = await fetch("/api/login", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(dataToken),
-    });
     // localStorage.setItem("token", user.token);
     dispatch({ type: "USER_LOGIN_SUCCESS", payload: user });
     Swal.fire({
