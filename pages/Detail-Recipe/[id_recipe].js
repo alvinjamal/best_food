@@ -18,6 +18,8 @@ import Swal from "sweetalert2";
 
 export async function getServerSideProps(context) {
   const cookie = context.req.headers.cookie;
+  const id_recipe = context.params.id_recipe;
+
   if (!cookie) {
     return {
       redirect: {
@@ -28,15 +30,15 @@ export async function getServerSideProps(context) {
   }
   return {
     props: {
+      id_recipe,
       isLogin: true,
       login: cookie,
     },
   };
 }
 
-function DetailRecipe({ token }) {
+function DetailRecipe({ id_recipe, token }) {
   const router = useRouter([]);
-  const id_recipe = context.params.id_recipe;
   const [data, setData] = useState([]);
   console.log("data id", data);
   const user = {
