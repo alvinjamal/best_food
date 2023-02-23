@@ -16,7 +16,7 @@ import { Button } from "react-bootstrap";
 
 export async function getServerSideProps(context) {
   const cookie = context.req.headers.cookie;
-  const res = await axios.get(`${process.env.URL_BASE}/recipe`, {
+  const res = await axios.get(`/recipe`, {
     withCredentials: true,
     headers: {
       Cookie: cookie,
