@@ -38,6 +38,7 @@ function DetailRecipe({ token }) {
   const router = useRouter([]);
   const id_recipe = context.params.id_recipe;
   const [data, setData] = useState([]);
+  console.log("data id", data);
   const user = {
     headers: {
       Authorization: `Bearer ${token}`,
