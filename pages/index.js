@@ -57,6 +57,7 @@ export async function getServerSideProps(context) {
 
 const LandingPage = ({ login, error }) => {
   const [data, setData] = useState([]);
+  console.log("ini data", data);
   useEffect(() => {
     axios
       .get(`/recipe`, {
