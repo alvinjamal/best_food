@@ -48,13 +48,13 @@ const LandingPage = ({ data, login, error }) => {
   return (
     <div className="container">
       <Layouts Login={login} />
-      {error && <p>{JSON.stringify(error)}</p>}
       <div
         className="row align-items-center bg-white"
         style={{ marginTop: "80px" }}
       >
         <div className="col-3 text-primary">
           <h1>Discover Recipe & Delicious Food</h1>
+          {error && <p>{JSON.stringify(error)}</p>}
           <input
             type="search"
             className="form-control rounded-2 bg-light"
