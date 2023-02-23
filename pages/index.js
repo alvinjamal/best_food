@@ -16,33 +16,56 @@ import { Button } from "react-bootstrap";
 
 export async function getServerSideProps(context) {
   const cookie = context.req.headers.cookie;
-  try {
-    const res = await axios.get(`/recipe`, {
-      withCredentials: true,
-      headers: {
-        Cookie: cookie,
-      },
-    });
+  // try {
+  //   const res = await axios.get(`/recipe`, {
+  //     withCredentials: true,
+  //     headers: {
+  //       Cookie: cookie,
+  //     },
+  //   });
+  //   return {
+  //     props: {
+  //       data: res.data.data,
+  //       login: cookie ? true : false,
+  //       error: {},
+  //     },
+  //   };
+  // } catch (err) {
+  //   return {
+  //     props: {
+  //       data: [],
+  //       error: err.response.data,
+  //       login: cookie ? true : false,
+  //     },
+  //   };
+  // }
+  if (!cookie) {
     return {
-      props: {
-        data: res.data.data,
-        login: cookie ? true : false,
-        error: {},
-      },
-    };
-  } catch (err) {
-    return {
-      props: {
-        data: [],
-        error: err.response.data,
-        login: cookie ? true : false,
+      redirect: {
+        destination: "/auth/Login",
+        permanent: true,
       },
     };
   }
+  return {
+    props: {
+      isLogin: true,
+      login: cookie,
+    },
+  };
 }
 
-const LandingPage = ({ data, login, error }) => {
-  // const [data, setData] = useState("");
+const LandingPage = ({ login, error }) => {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    axios
+      .get(`/recipe`, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        setData(res.data.data);
+      });
+  }, []);
   const [key, setKey] = useState("myrecipe");
   const router = useRouter();
   return (
