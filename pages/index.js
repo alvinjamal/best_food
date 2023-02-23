@@ -27,7 +27,7 @@ export async function getServerSideProps(context) {
       props: {
         data: res.data.data,
         login: cookie ? true : false,
-        error: false,
+        error: {},
       },
     };
   } catch (err) {
@@ -54,7 +54,7 @@ const LandingPage = ({ data, login, error }) => {
       >
         <div className="col-3 text-primary">
           <h1>Discover Recipe & Delicious Food</h1>
-          {error && <p>{JSON.stringify(error)}</p>}
+          {<p>error nya adalah{JSON.stringify(error)}</p>}
           <input
             type="search"
             className="form-control rounded-2 bg-light"
