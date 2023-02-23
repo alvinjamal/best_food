@@ -34,7 +34,7 @@ export async function getServerSideProps(context) {
   };
 }
 
-function DetailRecipe({ id_recipe, token }) {
+function DetailRecipe({ token }) {
   const router = useRouter([]);
   const id_recipe = context.params.id_recipe;
   const [data, setData] = useState([]);
