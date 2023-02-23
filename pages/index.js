@@ -1,3 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable react-hooks/rules-of-hooks */
+/* eslint-disable @next/next/no-img-element */
+/* eslint-disable jsx-a11y/alt-text */
+
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import Router, { useRouter } from "next/router";
@@ -9,36 +14,9 @@ import Layouts from "../components/Layouts";
 import styles from "../styles/Home.module.css";
 import { Button } from "react-bootstrap";
 
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable react-hooks/rules-of-hooks */
-/* eslint-disable @next/next/no-img-element */
-/* eslint-disable jsx-a11y/alt-text */
-
 export async function getServerSideProps(context) {
   const cookie = context.req.headers.cookie;
-  // try {
-  //   const res = await axios.get(`/recipe`, {
-  //     withCredentials: true,
-  //     headers: {
-  //       Cookie: cookie,
-  //     },
-  //   });
-  //   return {
-  //     props: {
-  //       data: res.data.data,
-  //       login: cookie ? true : false,
-  //       error: {},
-  //     },
-  //   };
-  // } catch (err) {
-  //   return {
-  //     props: {
-  //       data: [],
-  //       error: err.response.data,
-  //       login: cookie ? true : false,
-  //     },
-  //   };
-  // }
+
   if (!cookie) {
     return {
       redirect: {
