@@ -17,7 +17,6 @@ import { useState } from "react";
 import Swal from "sweetalert2";
 
 export async function getServerSideProps(context) {
-  const id_recipe = context.params.id_recipe;
   const cookie = context.req.headers.cookie;
   if (!cookie) {
     return {
@@ -37,6 +36,7 @@ export async function getServerSideProps(context) {
 
 function DetailRecipe({ id_recipe, token }) {
   const router = useRouter([]);
+  const id_recipe = context.params.id_recipe;
   const [data, setData] = useState([]);
   const user = {
     headers: {
