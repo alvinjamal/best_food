@@ -34,7 +34,7 @@ export async function getServerSideProps(context) {
     return {
       props: {
         data: [],
-        error: err.response,
+        error: err.response.data,
         login: cookie ? true : false,
       },
     };
