@@ -16,27 +16,39 @@ import { Button } from "react-bootstrap";
 
 export async function getServerSideProps(context) {
   const cookie = context.req.headers.cookie;
-  const res = await axios.get(`/recipe`, {
-    withCredentials: true,
-    headers: {
-      Cookie: cookie,
-    },
-  });
-  return {
-    props: {
-      data: res.data.data,
-      login: cookie ? true : false,
-    },
-  };
+  try {
+    const res = await axios.get(`/recipe`, {
+      withCredentials: true,
+      headers: {
+        Cookie: cookie,
+      },
+    });
+    return {
+      props: {
+        data: res.data.data,
+        login: cookie ? true : false,
+        error: false,
+      },
+    };
+  } catch (err) {
+    return {
+      props: {
+        data: [],
+        error: err.response,
+        login: cookie ? true : false,
+      },
+    };
+  }
 }
 
-const LandingPage = ({ data, login }) => {
+const LandingPage = ({ data, login, error }) => {
   // const [data, setData] = useState("");
   const [key, setKey] = useState("myrecipe");
   const router = useRouter();
   return (
     <div className="container">
       <Layouts Login={login} />
+      {error && <p>{JSON.stringify(error)}</p>}
       <div
         className="row align-items-center bg-white"
         style={{ marginTop: "80px" }}
