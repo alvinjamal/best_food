@@ -17,42 +17,31 @@ import { useState } from "react";
 import Swal from "sweetalert2";
 
 export async function getServerSideProps(context) {
+  const id_recipe = context.params.id_recipe;
   const cookie = context.req.headers.cookie;
-  if (!cookie) {
-    return {
-      redirect: {
-        destination: "/auth/Login",
-        permanent: true,
-      },
-    };
-  }
+  const res = await axios.get(`/recipe/detail/${id_recipe}`, {
+    withCredentials: true,
+    headers: {
+      Cookie: cookie,
+    },
+  });
   return {
     props: {
-      isLogin: true,
-      login: cookie,
+      data: res.data.data,
+      id_recipe,
+      token: `token=${cookie}`,
+      // login: token ? true : false,
     },
   };
 }
 
-function DetailRecipe({ token }) {
-  const id_recipe = context.params.id_recipe;
+function DetailRecipe({ data, id_recipe, token }) {
   const router = useRouter([]);
-  const [data, setData] = useState([]);
   const user = {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   };
-
-  useEffect(() => {
-    axios
-      .get(`/recipe/detail/${id_recipe}`, user, {
-        withCredentials: true,
-      })
-      .then((res) => {
-        setData(res.data.data);
-      });
-  }, []);
 
   const [dataComment, setDataComment] = useState([""]);
 
