@@ -8,7 +8,6 @@ import Image from "next/image";
 import { globals } from "styled-jsx/css";
 import { Button, Form } from "react-bootstrap";
 import { useRouter } from "next/router";
-import Link from "next/link";
 import { useEffect } from "react";
 import axios from "axios";
 import Layouts from "../../components/Layouts";
@@ -20,7 +19,7 @@ export async function getServerSideProps(context) {
   const id_recipe = context.params.id_recipe;
   const cookie = context.req.headers.cookie;
   const res = await axios.get(
-    `https://be-recipe.vercel.app/recipe/detail/${id_recipe}`,
+    `${process.env.URL_BASE}/recipe/detail/${id_recipe}`,
     {
       withCredentials: true,
       headers: {
@@ -39,7 +38,7 @@ export async function getServerSideProps(context) {
   };
 }
 
-function DetailRecipe({ data, id_recipe, token }) {
+function DetailRecipe({ id_recipe, token }) {
   const router = useRouter([]);
   const user = {
     headers: {
@@ -48,16 +47,17 @@ function DetailRecipe({ data, id_recipe, token }) {
   };
 
   const [dataComment, setDataComment] = useState([""]);
-  // const [data, setData] = useState([])
-  // useEffect(() => {
-  //    axios
-  //      .get(`/recipe/detail/`, {
-  //        withCredentials: true,
-  //      })
-  //      .then((res) => {
-  //        setData(res.data.data);
-  //      });
-  // })
+  const [data, setData] = useState([null]);
+  useEffect(() => {
+    console.log("data");
+    axios
+      .get(`${process.env.URL_BASE}/recipe/detail/${id_recipe}`, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        setData(res.data.data);
+      });
+  }, []);
   // useEffect(() => {
   //   axios
   //     .get(`${process.env.URL_BASE}/recipe/comment/${id_recipe}`)
@@ -78,26 +78,26 @@ function DetailRecipe({ data, id_recipe, token }) {
       [e.target.name]: e.target.value,
     });
   };
-  const handleData = async (e) => {
-    e.preventDefault();
-    axios
-      .post(
-        `${process.env.URL_BASE}/recipe/add-comment/${id_recipe}`,
-        postData,
-        user
-      )
-      .then((result) => {
-        console.log("Post comment success");
-        console.log(result);
-        Swal.fire("Success", "Post comment success", "success");
-        window.location.reload(false);
-      })
-      .catch((err) => {
-        console.log("Post comment fail");
-        console.log(err);
-        Swal.fire("Warning", "Post comment failed", "error");
-      });
-  };
+  // const handleData = async (e) => {
+  //   e.preventDefault();
+  //   axios
+  //     .post(
+  //       `${process.env.URL_BASE}/recipe/add-comment/${id_recipe}`,
+  //       postData,
+  //       user
+  //     )
+  //     .then((result) => {
+  //       console.log("Post comment success");
+  //       console.log(result);
+  //       Swal.fire("Success", "Post comment success", "success");
+  //       window.location.reload(false);
+  //     })
+  //     .catch((err) => {
+  //       console.log("Post comment fail");
+  //       console.log(err);
+  //       Swal.fire("Warning", "Post comment failed", "error");
+  //     });
+  // };
   const handleSave = async (e) => {
     e.preventDefault();
     let form = {
