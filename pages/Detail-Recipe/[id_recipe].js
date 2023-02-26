@@ -35,7 +35,7 @@ export async function getServerSideProps(context) {
   };
 }
 
-function DetailRecipe({ id_recipe, token }) {
+function DetailRecipe({ data, id_recipe, token }) {
   const router = useRouter([]);
   const user = {
     headers: {
@@ -44,16 +44,16 @@ function DetailRecipe({ id_recipe, token }) {
   };
 
   const [dataComment, setDataComment] = useState([""]);
-  const [data, setData] = useState([]);
-  useEffect(() => {
-    axios
-      .get(`${process.env.URL_BASE}/recipe/detail/${id_recipe}`, {
-        withCredentials: true,
-      })
-      .then((res) => {
-        setData(res.data.data);
-      });
-  }, []);
+  // const [data, setData] = useState([]);
+  // useEffect(() => {
+  //   axios
+  //     .get(`/recipe/detail/${id_recipe}`, {
+  //       withCredentials: true,
+  //     })
+  //     .then((res) => {
+  //       setData(res.data.data);
+  //     });
+  // }, []);
   // useEffect(() => {
   //   axios
   //     .get(`${process.env.URL_BASE}/recipe/comment/${id_recipe}`)
