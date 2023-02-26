@@ -19,12 +19,15 @@ import Swal from "sweetalert2";
 export async function getServerSideProps(context) {
   const id_recipe = context.params.id_recipe;
   const cookie = context.req.headers.cookie;
-  const res = await axios.get(`/recipe/detail/${id_recipe}`, {
-    withCredentials: true,
-    headers: {
-      Cookie: cookie,
-    },
-  });
+  const res = await axios.get(
+    `${process.env.URL_BASE}/recipe/detail/${id_recipe}`,
+    {
+      withCredentials: true,
+      headers: {
+        Cookie: cookie,
+      },
+    }
+  );
 
   return {
     props: {
