@@ -45,6 +45,7 @@ function DetailRecipe({ token }) {
 
   const [dataComment, setDataComment] = useState([""]);
   const [data, setData] = useState([]);
+  console.log("data", data);
   useEffect(() => {
     axios
       .get(`${process.env.URL_BASE}/recipe/detail/${data.id_recipe}`, {
