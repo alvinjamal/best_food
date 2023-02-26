@@ -47,7 +47,7 @@ function DetailRecipe({ token }) {
   const [data, setData] = useState([]);
   useEffect(() => {
     axios
-      .get(`/recipe/detail/${data.id_recipe}`, {
+      .get(`${process.env.URL_BASE}/recipe/detail/${data.id_recipe}`, {
         withCredentials: true,
       })
       .then((res) => {
