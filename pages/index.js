@@ -33,7 +33,7 @@ export async function getServerSideProps(context) {
   };
 }
 
-const LandingPage = ({ login, error }) => {
+const LandingPage = ({ login }) => {
   const [data, setData] = useState([]);
   useEffect(() => {
     axios
