@@ -37,7 +37,7 @@ const LandingPage = ({ login }) => {
   const [data, setData] = useState([]);
   useEffect(() => {
     axios
-      .get(`${process.env.URL_BASE}/recipe`, {
+      .get(`/recipe`, {
         withCredentials: true,
       })
       .then((res) => {
@@ -46,16 +46,6 @@ const LandingPage = ({ login }) => {
   }, []);
   const [key, setKey] = useState("myrecipe");
   const router = useRouter();
-  const [detail, setDetail] = useState([]);
-  useEffect(() => {
-    axios
-      .get(`${process.env.URL_BASE}/recipe/detail/${data.id_recipe}`, {
-        withCredentials: true,
-      })
-      .then((res) => {
-        setDetail(res.data.data);
-      });
-  }, []);
   return (
     <div className="container">
       <Layouts Login={login} />
