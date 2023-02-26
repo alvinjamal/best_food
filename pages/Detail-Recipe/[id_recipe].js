@@ -17,25 +17,26 @@ import { useState } from "react";
 import Swal from "sweetalert2";
 
 export async function getServerSideProps(context) {
+  const id_recipe = context.params.id_recipe;
   const cookie = context.req.headers.cookie;
+  const res = await axios.get(`/recipe/detail/${id_recipe}`, {
+    withCredentials: true,
+    headers: {
+      Cookie: cookie,
+    },
+  });
 
-  if (!cookie) {
-    return {
-      redirect: {
-        destination: "/auth/Login",
-        permanent: true,
-      },
-    };
-  }
   return {
     props: {
-      isLogin: true,
-      login: cookie,
+      data: res.data.data,
+      id_recipe,
+      // token: `token=${cookie}`,
+      // login: token ? true : false,
     },
   };
 }
 
-function DetailRecipe({ token }) {
+function DetailRecipe({ data, id_recipe, token }) {
   const router = useRouter([]);
   const user = {
     headers: {
@@ -44,17 +45,16 @@ function DetailRecipe({ token }) {
   };
 
   const [dataComment, setDataComment] = useState([""]);
-  const [data, setData] = useState([]);
-  console.log("data", data);
-  useEffect(() => {
-    axios
-      .get(`${process.env.URL_BASE}/recipe/detail/${data.id_recipe}`, {
-        withCredentials: true,
-      })
-      .then((res) => {
-        setData(res.data.data);
-      });
-  }, []);
+  // const [data, setData] = useState([])
+  // useEffect(() => {
+  //    axios
+  //      .get(`/recipe/detail/`, {
+  //        withCredentials: true,
+  //      })
+  //      .then((res) => {
+  //        setData(res.data.data);
+  //      });
+  // })
   // useEffect(() => {
   //   axios
   //     .get(`${process.env.URL_BASE}/recipe/comment/${id_recipe}`)
