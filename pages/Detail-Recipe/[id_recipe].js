@@ -70,7 +70,12 @@ function DetailRecipe({ login }) {
             <img
               src={data.photo}
               alt=""
-              style={{ width: "900px", height: "500px", borderRadius: "12px" }}
+              style={{
+                marginLeft: "3rem",
+                width: "850px",
+                height: "500px",
+                borderRadius: "12px",
+              }}
             />
           </div>
         </div>
@@ -141,12 +146,12 @@ function DetailRecipe({ login }) {
           name="comment"
           rows="9"
           placeholder="Comment"
-          onChange={(e) => handleChange(e)}
-          value={postData.comment}
-        ></textarea> */}
-        {/* <Button
+          // onChange={(e) => handleChange(e)}
+          // value={postData.comment}
+        ></textarea>
+        <Button
           type="submit"
-          onClick={(e) => handleData(e)}
+          // onClick={(e) => handleData(e)}
           className="bg-warning mb-4"
           style={{ width: "30rem", height: "3rem", textAlign: "center" }}
         >

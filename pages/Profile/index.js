@@ -5,7 +5,7 @@
 
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
-import ModalEdit from "../../components/Modal";
+import ModalEdit from "../../components/Modal/[id_user]";
 import axios from "axios";
 import Layouts from "../../components/Layouts";
 import Footer from "../../components/Footer";
@@ -165,9 +165,8 @@ function profile({ token }) {
           <div className="row justify-content-center mt-5">
             <div className="col-1">
               <img
-                // src={"/alvin1.png"}
-                src={data ? data[0].photo : "data not found"}
-                style={{ width: "100px", height: "100px", borderRadius: "50%" }}
+                src={data ? data.photo : "data not found"}
+                style={{ width: "500px", height: "100px", borderRadius: "50%" }}
                 className="avatar-profile"
                 alt=""
               />
@@ -232,14 +231,14 @@ function profile({ token }) {
                             >
                               {/* <RiEditBoxLine /> */}
                             </button>
-                            <button
+                            {/* <button
                               key={item.id_recipe}
                               onClick={() => DeleteRecipe(item.id_recipe)}
                               className="btn btn-danger text-white"
                               style={{
                                 marginTop: "-100px",
                               }}
-                            ></button>
+                            ></button> */}
                           </div>
                         </div>
                       ))
@@ -256,7 +255,7 @@ function profile({ token }) {
                           className="col-3"
                           key={item.recipe_id}
                           onClick={() =>
-                            router.push(`/recipe/${item.recipe_id}`)
+                            router.push(`/Detail-Recipe/${item.recipe_id}`)
                           }
                         >
                           <img
@@ -299,7 +298,7 @@ function profile({ token }) {
                           className="col-3"
                           key={item.recipe_id}
                           onClick={() =>
-                            router.push(`/recipe/${item.recipe_id}`)
+                            router.push(`/Detail-Recipe/${item.recipe_id}`)
                           }
                         >
                           <img
@@ -317,7 +316,7 @@ function profile({ token }) {
                             {item.title}
                           </h4>
                           <div className="mt-4">
-                            <button
+                            {/* <button
                               key={item.id_liked}
                               onClick={() => DeleteLike(item.id_liked)}
                               className="btn btn-danger text-white"
@@ -325,7 +324,7 @@ function profile({ token }) {
                                 marginTop: "-100px",
                                 marginLeft: "250px",
                               }}
-                            ></button>
+                            ></button> */}
                           </div>
                         </div>
                       ))

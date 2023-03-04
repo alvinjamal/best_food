@@ -29,11 +29,7 @@ function detailVideoRecipe({ login }) {
   const router = useRouter();
   const { id_recipe } = router.query;
   const [data, setData] = useState({
-    id_recipe: "",
-    title: "",
-    photo: "",
     video: "",
-    ingredients: "",
   });
   useEffect(() => {
     axios
@@ -54,6 +50,7 @@ function detailVideoRecipe({ login }) {
               <source src={data.video} type="video/mp4" />
               Your browser does not support HTML video.
             </video>
+            {/* <h4>{data.title}</h4> */}
             <h6 className="text-secondary">3 month ago</h6>
           </div>
           <div className="col-3 offset-2">

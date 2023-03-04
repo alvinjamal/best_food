@@ -28,6 +28,8 @@ export async function getServerSideProps(context) {
 }
 
 function ModalEdit({ token }) {
+  const router = useRouter();
+  const { id_user } = router.query;
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -38,14 +40,18 @@ function ModalEdit({ token }) {
   };
   const updatePhoto = async (e) => {
     e.preventDefault();
-    const user = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "multipart/form-data",
-      },
-    };
+    // const user = {
+    //   headers: {
+    //     Authorization: `Bearer ${token}`,
+    //     "Content-Type": "multipart/form-data",
+    //   },
+    // };
+
+    const formData = new FormData();
+    formData.append("photo", photo);
+
     await axios
-      .put(`/users/update`, user)
+      .put(`/service/users/update/${id_user}`, formData)
       .then((res) => {
         console.log("Update profile succes");
         console.log(res);
