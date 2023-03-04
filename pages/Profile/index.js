@@ -5,7 +5,7 @@
 
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
-import ModalEdit from "../../components/Modal/[id_user]";
+import ModalEdit from "../../components/Modal";
 import axios from "axios";
 import Layouts from "../../components/Layouts";
 import Footer from "../../components/Footer";
@@ -16,11 +16,10 @@ import Swal from "sweetalert2";
 
 export const getServerSideProps = async (context) => {
   const { token } = context.req.cookies;
-  console.log(token);
   if (!token) {
     return {
       redirect: {
-        destination: "/login",
+        destination: "/auth/Login",
         permanent: true,
       },
     };
@@ -40,7 +39,7 @@ function profile({ token }) {
   const router = useRouter();
   useEffect(() => {
     axios
-      .get(`${process.env.URL_BASE}/users`, {
+      .get(`/service/users`, {
         withCredentials: true,
         headers: {
           token: `${token}`,
@@ -59,7 +58,7 @@ function profile({ token }) {
   const [recipe, setRecipe] = useState(null);
   const [save, setSave] = useState(null);
   const [like, setLike] = useState(null);
-  const myrecipe = `${process.env.URL_BASE}/recipe/recipe-user`;
+  const myrecipe = `/service/recipe/recipe-user`;
   useEffect(() => {
     axios
       .get(myrecipe, {
@@ -75,7 +74,7 @@ function profile({ token }) {
         console.log(err);
       });
   }, []);
-  const saved = `${process.env.URL_BASE}/recipe/saved-recipe`;
+  const saved = `/service/recipe/saved-recipe`;
   useEffect(() => {
     axios
       .get(saved, {
@@ -91,7 +90,7 @@ function profile({ token }) {
         console.log(err);
       });
   }, []);
-  const liked = `${process.env.URL_BASE}/recipe/like-recipe`;
+  const liked = `/service/recipe/like-recipe`;
   useEffect(() => {
     axios
       .get(liked, {
@@ -109,12 +108,9 @@ function profile({ token }) {
   }, []);
   const DeleteSave = (id_saved) => {
     axios
-      .delete(
-        `${process.env.URL_BASE}/recipe/saved-recipe/delete/${id_saved}`,
-        {
-          withCredentials: true,
-        }
-      )
+      .delete(`/service/recipe/saved-recipe/delete/${id_saved}`, {
+        withCredentials: true,
+      })
       .then((res) => {
         console.log("Delete save recipe success");
         console.log(res);
@@ -129,7 +125,7 @@ function profile({ token }) {
   };
   const DeleteLike = (id_liked) => {
     axios
-      .delete(`${process.env.URL_BASE}/recipe/like-recipe/delete/${id_liked}`, {
+      .delete(`/service/recipe/like-recipe/delete/${id_liked}`, {
         withCredentials: true,
       })
       .then((res) => {
@@ -146,7 +142,7 @@ function profile({ token }) {
   };
   const DeleteRecipe = (id_recipe) => {
     axios
-      .delete(`${process.env.URL_BASE}/recipe/delete-recipe/${id_recipe}`, {
+      .delete(`/service/recipe/delete-recipe/${id_recipe}`, {
         withCredentials: true,
       })
       .then((res) => {

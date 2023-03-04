@@ -37,14 +37,14 @@ const LandingPage = ({ login }) => {
   const [data, setData] = useState([]);
   useEffect(() => {
     axios
-      .get(`/recipe`, {
+      .get(`/service/recipe`, {
         withCredentials: true,
       })
       .then((res) => {
         setData(res.data.data);
       });
   }, []);
-  const [key, setKey] = useState("myrecipe");
+  const [key, setKey] = useState("");
   const router = useRouter();
   return (
     <div className="container">

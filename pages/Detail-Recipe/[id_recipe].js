@@ -5,7 +5,6 @@
 /* eslint-disable jsx-a11y/alt-text */
 
 import Image from "next/image";
-import { globals } from "styled-jsx/css";
 import { Button, Form } from "react-bootstrap";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
@@ -13,139 +12,55 @@ import axios from "axios";
 import Layouts from "../../components/Layouts";
 import Footer from "../../components/Footer";
 import { useState } from "react";
-import Swal from "sweetalert2";
 
 export async function getServerSideProps(context) {
-  const id_recipe = context.params.id_recipe;
   const cookie = context.req.headers.cookie;
-  const res = await axios.get(
-    `${process.env.URL_BASE}/recipe/detail/${id_recipe}`,
-    {
-      withCredentials: true,
-      headers: {
-        Cookie: cookie,
-      },
-    }
-  );
 
+  if (!cookie) {
+    return {
+      redirect: {
+        destination: "/auth/Login",
+        permanent: true,
+      },
+    };
+  }
   return {
     props: {
-      data: res.data.data,
-      id_recipe,
-      // token: `token=${cookie}`,
-      // login: token ? true : false,
+      // isLogin: true,
+      login: cookie,
     },
   };
 }
 
-function DetailRecipe({ id_recipe, token }) {
-  const router = useRouter([]);
-  const user = {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  };
-
-  const [dataComment, setDataComment] = useState([""]);
-  const [data, setData] = useState([null]);
+function DetailRecipe({ login }) {
+  const router = useRouter();
+  const { id_recipe } = router.query;
+  const [data, setData] = useState({
+    id_recipe: "",
+    title: "",
+    photo: "",
+    video: "",
+    ingredients: "",
+  });
   useEffect(() => {
-    console.log("data");
     axios
-      .get(`${process.env.URL_BASE}/recipe/detail/${id_recipe}`, {
+      .get(`/service/recipe/detail/${id_recipe}`, {
         withCredentials: true,
       })
       .then((res) => {
         setData(res.data.data);
       });
   }, []);
-  // useEffect(() => {
-  //   axios
-  //     .get(`${process.env.URL_BASE}/recipe/comment/${id_recipe}`)
-  //     .then((res) => {
-  //       console.log("Get comment recipe success");
-  //       console.log(res.data);
-  //       res.data && setDataComment(res.data.data);
-  //     })
-  //     .catch((err) => {
-  //       console.log("Get comment recipe fail");
-  //       console.log(err);
-  //     });
-  // }, []);
-  const [postData, setPostData] = useState([]);
-  const handleChange = (e) => {
-    setPostData({
-      ...postData,
-      [e.target.name]: e.target.value,
-    });
-  };
-  // const handleData = async (e) => {
-  //   e.preventDefault();
-  //   axios
-  //     .post(
-  //       `${process.env.URL_BASE}/recipe/add-comment/${id_recipe}`,
-  //       postData,
-  //       user
-  //     )
-  //     .then((result) => {
-  //       console.log("Post comment success");
-  //       console.log(result);
-  //       Swal.fire("Success", "Post comment success", "success");
-  //       window.location.reload(false);
-  //     })
-  //     .catch((err) => {
-  //       console.log("Post comment fail");
-  //       console.log(err);
-  //       Swal.fire("Warning", "Post comment failed", "error");
-  //     });
-  // };
-  const handleSave = async (e) => {
-    e.preventDefault();
-    let form = {
-      recipe_id: id_recipe,
-    };
-    axios
-      .post(`${process.env.URL_BASE}/recipe/saved-recipe`, form, user)
-      .then((res) => {
-        console.log("Add save recipe success");
-        console.log(res);
-        Swal.fire("Success", "Add save recipe success", "success");
-        window.location.reload(false);
-      })
-      .catch((err) => {
-        console.log("Add save recipe fail");
-        console.log(err);
-        Swal.fire("Warning", "Add save recipe fail", "error");
-      });
-  };
-  const handleLike = async (e) => {
-    e.preventDefault();
-    let form = {
-      recipe_id: id_recipe,
-    };
-    axios
-      .post(`${process.env.URL_BASE}/recipe/like-recipe`, form, user)
-      .then((res) => {
-        console.log("Add like recipe success");
-        console.log(res);
-        Swal.fire("Success", "Add like recipe success", "success");
-        window.location.reload(false);
-      })
-      .catch((err) => {
-        console.log("Add like recipe fail");
-        console.log(err);
-        Swal.fire("Warning", "Add like recipe fail", "error");
-      });
-  };
+
   return (
     <div className="container">
-      <Layouts />
+      <Layouts Login={login} />
       <div
         className="row justify-content-center mt-4"
         style={{ marginLeft: "1rem" }}
       >
         <div className="col-2 text-primary">
           <h1 style={{ fontWeight: "bold" }}>{data.title}</h1>
-          {/* <h1>Title</h1> */}
         </div>
         <div
           className="row justify-content-center mt-4"
@@ -209,7 +124,7 @@ function DetailRecipe({ id_recipe, token }) {
           </div>
         </div>
         <div
-          className="row justify-content-start mt-3"
+          className="row justify-content-start mt-3 mb-4"
           style={{ marginLeft: "50px" }}
         >
           <div className="col-2">
@@ -221,23 +136,23 @@ function DetailRecipe({ id_recipe, token }) {
             </button>
           </div>
         </div>
-        <textarea
+        {/* <textarea
           className="form-control bg-light mt-5 mb-3"
           name="comment"
           rows="9"
           placeholder="Comment"
           onChange={(e) => handleChange(e)}
           value={postData.comment}
-        ></textarea>
-        <Button
+        ></textarea> */}
+        {/* <Button
           type="submit"
           onClick={(e) => handleData(e)}
           className="bg-warning mb-4"
           style={{ width: "30rem", height: "3rem", textAlign: "center" }}
         >
           Send
-        </Button>
-        <div
+        </Button> */}
+        {/* <div
           className="row justify-content-start mt-3"
           style={{ marginLeft: "50px" }}
         >
@@ -261,7 +176,7 @@ function DetailRecipe({ id_recipe, token }) {
           ) : (
             <h1>...Loading</h1>
           )}
-        </div>
+        </div> */}
       </div>
       <Footer />
     </div>

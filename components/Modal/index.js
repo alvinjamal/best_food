@@ -6,25 +6,23 @@ import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { useRouter } from "next/router";
 
 export async function getServerSideProps(context) {
-  const id_user = req.params.id_user;
   const cookie = context.req.headers.cookie;
-  console.log(cookie);
-  const res = await axios.put(
-    `${process.env.URL_BASE}/users/update/${id_user}`,
-    {
-      withCredentials: true,
-      headers: {
-        Cookie: cookie,
+
+  if (!cookie) {
+    return {
+      redirect: {
+        destination: "/auth/Login",
+        permanent: true,
       },
-    }
-  );
-  console.log("ini data", res.data);
+    };
+  }
   return {
     props: {
-      data: res.data.data,
-      // login: token ? true : false,
+      // isLogin: true,
+      login: cookie,
     },
   };
 }
@@ -38,12 +36,8 @@ function ModalEdit({ token }) {
     setPhoto(e.target.files[0]);
     console.log(e.target.files[0]);
   };
-  const postData = async (e) => {
+  const updatePhoto = async (e) => {
     e.preventDefault();
-    console.log(photo);
-    let data = {
-      photo,
-    };
     const user = {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -51,7 +45,7 @@ function ModalEdit({ token }) {
       },
     };
     await axios
-      .put(`${process.env.URL_BASE}/users/update`, data, user)
+      .put(`/users/update`, user)
       .then((res) => {
         console.log("Update profile succes");
         console.log(res);
@@ -59,16 +53,16 @@ function ModalEdit({ token }) {
           title: "Update Success",
           text: "Update profile success",
           icon: "success",
-          timer: "3000",
+          timer: "2000",
           showConfirmButton: false,
         }).then(() => {
           window.location.reload(false);
         });
       })
       .catch((err) => {
-        console.log("Update data profile failed");
+        console.log("Update photo failed");
         console.log(err);
-        Swal.fire("Warning", "Update profile failed", "error");
+        Swal.fire("Warning", "Update photo failed", "error");
       });
   };
 
@@ -101,7 +95,7 @@ function ModalEdit({ token }) {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="warning" onClick={postData}>
+          <Button variant="warning" onClick={updatePhoto}>
             Save Changes
           </Button>
         </Modal.Footer>

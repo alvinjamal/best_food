@@ -4,10 +4,7 @@ import Swal from "sweetalert2";
 export const RegisterUser = (data, router) => async (dispatch) => {
   try {
     dispatch({ type: "USER_Register_PENDING" });
-    const result = await axios.post(
-      `${process.env.URL_BASE}/users/register`,
-      data
-    );
+    const result = await axios.post(`/service/users/register`, data);
     const user = result.data.data;
     localStorage.setItem("token", user.token);
     dispatch({ type: "USER_REGISTER_SUCCESS", payload: user });

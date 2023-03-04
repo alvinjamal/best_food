@@ -1,32 +1,49 @@
-import React from "react";
+/* eslint-disable react-hooks/rules-of-hooks */
+/* eslint-disable react-hooks/exhaustive-deps */
 import Image from "next/image";
 import axios from "axios";
 import Layouts from "../../components/Layouts";
+import { useRouter } from "next/router";
+import { useState } from "react";
+import { useEffect } from "react";
 
 export async function getServerSideProps(context) {
-  const id_recipe = context.params.id_recipe;
   const cookie = context.req.headers.cookie;
-  const res = await axios.get(
-    `${process.env.URL_BASE}/recipe/detail/${id_recipe}`,
-    {
-      withCredentials: true,
-      headers: {
-        Cookie: cookie,
+  if (!cookie) {
+    return {
+      redirect: {
+        destination: "/auth/Login",
+        permanent: true,
       },
-    }
-  );
-
+    };
+  }
   return {
     props: {
-      data: res.data.data,
-      id_recipe,
-      token: `token=${cookie}`,
-      // login: token ? true : false,
+      // isLogin: true,
+      login: cookie,
     },
   };
 }
 
-function detailVideoRecipe({ data }) {
+function detailVideoRecipe({ login }) {
+  const router = useRouter();
+  const { id_recipe } = router.query;
+  const [data, setData] = useState({
+    id_recipe: "",
+    title: "",
+    photo: "",
+    video: "",
+    ingredients: "",
+  });
+  useEffect(() => {
+    axios
+      .get(`/service/recipe/detail/${id_recipe}`, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        setData(res.data.data);
+      });
+  }, []);
   return (
     <div>
       <Layouts />

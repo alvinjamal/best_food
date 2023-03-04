@@ -6,11 +6,11 @@ import { SSRProvider } from "react-bootstrap";
 function MyApp({ Component, pageProps }) {
   return (
     <div>
-      <SSRProvider>
-        <Provider store={store}>
-          <Component {...pageProps} />
-        </Provider>
-      </SSRProvider>
+      {/* <SSRProvider> */}
+      <Provider store={store}>
+        <Component {...pageProps} />
+      </Provider>
+      {/* </SSRProvider> */}
     </div>
   );
 }

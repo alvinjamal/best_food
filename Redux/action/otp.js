@@ -4,10 +4,7 @@ import Swal from "sweetalert2";
 export const VerifOtpUser = (data, router) => async (dispatch) => {
   try {
     dispatch({ type: "USER_OTP_PENDING" });
-    const result = await axios.post(
-      `${process.env.URL_BASE}/users/verification`,
-      data
-    );
+    const result = await axios.post(`/service/users/verification`, data);
     const otp = result.data;
     dispatch({ type: "USER_OTP_SUCCESS", payload: otp });
     Swal.fire({

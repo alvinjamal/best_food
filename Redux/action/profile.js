@@ -25,16 +25,12 @@ export const detailProfile = (token) => async (dispatch) => {
 
 export const editProfile = (id, formData, token) => async (dispatch) => {
   try {
-    const result = await axios.put(
-      `${process.env.URL_BASE}/users/profile`,
-      formData,
-      {
-        "content-type": "multipart/form-data",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+    const result = await axios.put(`/service/users/profile`, formData, {
+      "content-type": "multipart/form-data",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     const profile = result.data;
     dispatch({ type: "EDIT_PROFILE", payload: profile });
     swal({

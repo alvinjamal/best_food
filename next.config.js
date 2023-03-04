@@ -4,7 +4,7 @@ const nextConfig = {
   async rewrites() {
     return [
       {
-        source: "/:slug*",
+        source: "/service/:slug*",
         destination: `${process.env.URL_BASE}/:slug*`,
       },
     ];
