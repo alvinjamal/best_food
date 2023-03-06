@@ -100,6 +100,4 @@ be-recipe : https://github.com/alvinjamal/be-recipe
 
 ## Contact
 
-```
- Alvin Jamal Azkya [@Alvin](https://github.com/alvinjamal)
-```
+Alvin Jamal Azkya [@Alvin](https://github.com/alvinjamal)
