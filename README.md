@@ -2,6 +2,15 @@
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## Table of Contents
+
+- [Built With](#built-with)
+- [Getting Started](#getting-started)
+  - [Learn More](#learn-more)
+  - [Deploy on Vercel](#deploy-on-vercel)
+- [Screenshot](#screenshot)
+- [Contact](#contact)
+
 ## Getting Started
 
 First, run the development server:
@@ -55,7 +64,7 @@ This app was built with some technologies below:
 - [Redux](https://www.npmjs.com/package/redux)
 - [Redux-thunk](https://www.npmjs.com/search?q=redux-thunk)
 
-## Screenshots
+## Screenshot
 
 | Register Page                                                                                                      | Verification Page                                                                                                              |
 | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ |
@@ -88,3 +97,9 @@ This app was built with some technologies below:
 ### References Backend Recipe
 
 be-recipe : https://github.com/alvinjamal/be-recipe
+
+## Contact
+
+```
+ Alvin Jamal Azkya [@Alvin](https://github.com/alvinjamal)
+```
