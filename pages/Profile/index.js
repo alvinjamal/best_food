@@ -39,7 +39,7 @@ function profile({ token }) {
   const router = useRouter();
   useEffect(() => {
     axios
-      .get(`/service/users`, {
+      .get(`/service/users/${data.id_user}`, {
         withCredentials: true,
         headers: {
           token: `${token}`,
